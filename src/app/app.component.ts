@@ -13,19 +13,11 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
 
-  redirectToLogin() {
-    
- 
-    this.router.navigate(['/login']);
-  }
-  closeMainMenu()
-  {
-     let menu = document.getElementById('mainMenuId');
-     menu.className = "mainMenu ios menu-type-reveal menu-enabled menu-side-start hydrated";
-     
 
+  redirectTo(link :any) {
+    this.router.navigate(['/'+link]);
+    this.menu.close('MainMenu');
   }
-
   constructor(
     private router: Router,
     private platform: Platform,
@@ -43,12 +35,12 @@ export class AppComponent {
     });
   }
   openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
+    this.menu.enable(true, 'MainMenu');
+    this.menu.open('MainMenu');
   }
 
   openEnd() {
-    this.menu.open('end');
+    this.menu.close('MainMenu');
   }
 
   openCustom() {

@@ -1,24 +1,26 @@
 <ion-app>
     <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="light">
      
     
         <ion-grid>
           <ion-row>
 
-            <ion-col>
-             <ion-menu-button class="ion-float-left" menuId="MainMenu" > 
+            <ion-col align-self-stretch>
+             <ion-menu-button class="ion-float-left" menuId="MainMenu" style="margin-top:-3%;" > 
                <ion-button class=" ion-align-items-start"   color="light" size="large">
-                  <ion-icon  name="menu" ></ion-icon>
+                  <ion-icon  name="menu"></ion-icon>
                </ion-button>
                
              </ion-menu-button>
             </ion-col>
 
-
-            <ion-col>
-               <ion-button (click)="redirectToLogin()" class="ion-float-right ion-align-items-start" color="light" size="large">
-                  <ion-icon name="contact" class="ion-align-items-center"></ion-icon>
+            <ion-col align-self-stretch>
+              <ion-img src="../../assets/img/logo.png" class="ion-align-self-center" style="height:100%;position: absolute;"></ion-img>
+            </ion-col>
+            <ion-col align-self-stretch>
+               <ion-button (click)="redirectTo('login')" class=" ion-align-items-start" class="ion-float-right" color="light" >
+                  <ion-icon name="log-in"></ion-icon>
                </ion-button>
             </ion-col>
 
@@ -30,31 +32,63 @@
 
       <ion-menu contentId="MainMenu" menuId="MainMenu" side="start" id="mainMenuId"class="mainMenu">
           <ion-header>
-            <ion-toolbar>
+            <ion-toolbar color="light">
               <ion-title class="mainMenuText">Main Menu</ion-title>
             </ion-toolbar>
           </ion-header>
           <ion-content>
             <ion-list>
-                <ion-item>Home</ion-item>
-                <ion-item>News</ion-item>
-                <ion-item>Friends</ion-item>
-                <ion-item>Gallery</ion-item>
-                <ion-item>Settings</ion-item>
-                <ion-item>Log Out</ion-item>
+                <ion-item>
+                  <ion-icon name="home" class="ion-align-items-start "></ion-icon>
+                  <ion-button size="large" fill="clear" color="dark" (click)="redirectTo('home')">
+                    Home 
+                  </ion-button>
+              
+                </ion-item>
+                <ion-item>
+                  <ion-icon name="globe" class="ion-float-right"></ion-icon>
+                  <ion-button size="large" fill="clear" color="dark" (click)="redirectTo('news')">
+                    News 
+                  </ion-button>
+                  
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="contacts" class="ion-float-right"></ion-icon>
+                    <ion-button size="large" fill="clear" color="dark" (click)="redirectTo('friends')">
+                        Friends 
+                    </ion-button>
+                      
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="images" class="ion-float-right"></ion-icon>
+                    <ion-button size="large" fill="clear" color="dark" (click)="redirectTo('gallery')">
+                        Gallery 
+                    </ion-button>
+                      
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="hammer" class="ion-float-right"></ion-icon>
+                    <ion-button size="large" fill="clear" color="dark" (click)="redirectTo('settings')">
+                        Settings 
+                     </ion-button>
+                        
+                </ion-item>
+                <ion-item>
+                    <ion-icon name="exit"  class="ion-float-right"></ion-icon>
+                    <ion-button size="large" fill="clear" color="dark" >
+                        Log Out 
+                        </ion-button>
+                        
+                </ion-item>
             </ion-list>
+            
             <ion-fab vertical="bottom" horizontal="center" class="mainMenuCloseButton">
-                <ion-fab-button style="zoom:2.0;margin-left:-20%;" (click)="closeMainMenu()">
+                <ion-fab-button style="zoom:2.0;margin-left:-20%;" (click)="openEnd()">
                   <ion-icon  style="zoom:4.0;" name="close" color="light" ></ion-icon>
                 </ion-fab-button>
               </ion-fab>
           </ion-content>
         </ion-menu>
-
-
-      
-
-
 
       <ion-router-outlet id="MainMenu"></ion-router-outlet>
   
