@@ -1,9 +1,85 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+    <ion-grid no-padding>
+      <ion-row>
+  
+        <ion-col size="12"  class="loginCol" >
+          <ion-img class="loginImg"  src="../../assets/img/logo2.png" ></ion-img>
+          <div text-center>{{error}}</div>
+        </ion-col>
+  
+      </ion-row>
+      <ion-row text-center>
+  
+        <ion-col class="loginCol">
+          <ion-input class="loginInutL"  [(ngModel)]="userLogin"  type="text" placeholder="Login" required></ion-input>
+          
+        </ion-col>
+  
+      </ion-row>
+      <ion-row text-center>
+  
+        <ion-col class="loginCol">
+          <ion-input class="loginInutL"  [(ngModel)]="userPassword"  type="password" placeholder="Password" required></ion-input>
+         
+        </ion-col>
+      
+      </ion-row>
+      <ion-row text-center>
+  
+          <ion-col class="loginCol">
+            <ion-input class="loginInutL"  [(ngModel)]="userPassword2"  type="password" placeholder="Password Again" required></ion-input>
+            
+          </ion-col>
+        
+        </ion-row>
+      <ion-row text-center>
+  
+          <ion-col class="loginCol">
+            <ion-input class="loginInutL"  [(ngModel)]="userEmail"  type="email" placeholder="Email" required></ion-input>
+           
+          </ion-col>
+        
+        </ion-row>
+        <ion-row text-center>
+  
+            <ion-col class="loginCol">
+              <ion-input class="loginInutL"  [(ngModel)]="userPhone"  type="tel" placeholder="Phone" required></ion-input>
+            
+            </ion-col>
+          
+          </ion-row>
+            <ion-row text-center>
+  
+                <ion-col class="loginCol">
+                    <ion-input class="loginInutL"  [(ngModel)]="userGender"  type="ttext" placeholder="Male" required></ion-input>
+                 
+                  </ion-col>
+              
+              </ion-row>
+              <ion-row text-center>
+  
+                  <ion-col class="loginCol">
+                    <ion-input class="loginInutL"  [(ngModel)]="userBirthdate"  type="date" placeholder="Birthdate" required></ion-input>
+                   
+                  </ion-col>
+                
+                </ion-row>
+      <ion-row >
+  
+        <ion-col text-right class="loginCol " color="light">
+            <ion-button  (click)="register()" fill="clear" class="loginButtons">
+                Register 
+              </ion-button>
+        </ion-col>
+        <ion-col text-left class="loginCols ">
+            <ion-button (click)="redirectTo('login')" fill="clear"  class="loginButtons">
+                Login 
+              </ion-button>
+        </ion-col>
+  
+      </ion-row >
 
-</ion-content>
+    </ion-grid>
+  
+  </ion-content>
+  

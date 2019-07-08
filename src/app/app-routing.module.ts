@@ -11,6 +11,8 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'friends', loadChildren: './friends/friends.module#FriendsPageModule' },
   { path: 'gallery', loadChildren: './gallery/gallery.module#GalleryPageModule' },
+  { path: 'forgotpassword', loadChildren: './forgotpassword/forgotpassword.module#ForgotpasswordPageModule' },
+
 
 ];
 

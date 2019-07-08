@@ -1,8 +1,55 @@
 <ion-content>
-  <ion-img src="../../assets/img/password.png" ></ion-img>
-  <ion-input class="w-50"  required type="text" placeholder="Login"></ion-input>
-  <ion-input class="w-50"  required type="password" placeholder="Password"></ion-input>
-  <ion-button >
-    Login
-  </ion-button>
+  <ion-grid no-padding>
+    <ion-row>
+
+      <ion-col size="12"  class="loginCol" >
+        <ion-img class="loginImg"  src="../../assets/img/logo2.png" ></ion-img>
+        
+      </ion-col>
+
+    </ion-row>
+    <form #f="ngForm" name="loginForm" (submit)="logIn()" >
+    <ion-row text-center>
+
+      <ion-col class="loginCol">
+        <ion-input class="loginInutL"  [(ngModel)]="userLogin" name="login" required type="text" placeholder="Login" required></ion-input>
+        
+      </ion-col>
+
+    </ion-row>
+    <ion-row text-center>
+
+      <ion-col class="loginCol">
+        <ion-input class="loginInutL"  [(ngModel)]="userPassword" name="password" required type="password" placeholder="Password" required></ion-input>
+        
+      </ion-col>
+    
+    </ion-row>
+    <ion-row >
+
+      <ion-col size="5" text-right class="loginCol " color="light">
+          <ion-button  (click)="logIn()" fill="clear" class="loginButtons">
+               Login 
+            </ion-button>
+      </ion-col>
+      <ion-col text-left class="loginCols ">
+          <ion-button (click)="redirectTo('forgotpassword')" fill="clear" class="loginButtons">
+              Forgot Password
+            </ion-button>
+      </ion-col>
+
+    </ion-row >
+  </form>
+    <ion-row style="margin-top:-3%;" text-center>
+
+        <ion-col class="loginCol ">
+            <ion-button (click)="redirectTo('register')" fill="clear" class="loginButtons">
+                Register
+              </ion-button>
+        </ion-col>
+  
+      </ion-row>
+
+  </ion-grid>
+
 </ion-content>
