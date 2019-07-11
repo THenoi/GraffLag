@@ -1,9 +1,8 @@
 import { HttpModule, Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RenderDebugInfo } from '@angular/core/src/render/api';
-import { removeDebugNodeFromIndex } from '@angular/core/src/debug/debug_node';
-import { Subscriber, observable } from 'rxjs';
+
+import { Subscriber, observable, from } from 'rxjs';
 
 
 
@@ -32,27 +31,7 @@ export class RegisterPage implements OnInit {
 
   public regfn()
   {
-    let formdata = new FormData();
-    
-    const { Client } = require('pg')
-    const client = new Client({ 
-    user:"postgres",
-    password:"Mamicuta2828",
-    host:"localhost",
-    database: "pgdb_test"
-   })
-
-    client.connect()
-    .then(() => console.log("DataBase Connected"))
-     client.query("insert into users (userlogin, userpassword) VALUES ('userLogin', 'userPassword')")
-
-     client.query("Select userlogin from users where userid = 2")
-    .then(results => console.table(results.rows))
-    .finally(() => client.end());
-
-    
-
-    
+   
   }
     
   

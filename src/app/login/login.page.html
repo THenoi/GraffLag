@@ -4,7 +4,7 @@
 
       <ion-col size="12"  class="loginCol" >
         <ion-img class="loginImg"  src="../../assets/img/logo2.png" ></ion-img>
-        
+        <div text-center>{{error}}</div>
       </ion-col>
 
     </ion-row>
@@ -21,7 +21,6 @@
 
       <ion-col class="loginCol">
         <ion-input class="loginInutL"  [(ngModel)]="userPassword" name="password" required type="password" placeholder="Password" required></ion-input>
-        
       </ion-col>
     
     </ion-row>
