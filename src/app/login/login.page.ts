@@ -1,13 +1,17 @@
-import { Subscriber } from 'rxjs';
-import { LoginService } from './../services/login.service';
-import { Http } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
 
+import { LoginService } from './../services/login.service';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { stringify } from 'querystring';
-import { async } from 'q';
 
+export interface User {
+  userid: number,
+  login: string,
+  password: string,
+  email: string,
+  gender: string,
+  birthdate: Date,
+}
 
 @Component({
   selector: 'app-login',
@@ -16,61 +20,31 @@ import { async } from 'q';
 })
 
 export class LoginPage implements OnInit {
-  public userLogin: string;
-  public userPassword: string;
-  public error: string = "";
 
-  redirectTo(link: any) {
-    this.router.navigate(['/' + link]);
+  userLoginInfo: {};
 
-  }
-
-  logIn() {
-
-    if (this.userLogin == null) {
-      this.error = "Login are Empty";
-    }
-    else {
-
-      if (this.userPassword == null) {
-        this.error = "Password are Empty";
-
-      }
-      else {
-
-        interface IUser {
-          userid:string,
-          login: string,
-          password: string,
-          email:string,
-          gender:string,
-          birthdate:string,
-        }
-        let userLoginInfo:IUser
-
-         this.LoginService.login(this.userLogin, this.userPassword).subscribe(data => {
-          userLoginInfo  = data[0]; console.log(JSON.stringify(data[0]));
-        });
-
-        console.log( userLoginInfo);
-
-        if (userLoginInfo != null) {
-          this.error = "Welcome Back" + userLoginInfo;
-        }
-        else {
-          this.error = "This User Not Exist Try Again";
-        }
-      }
-    }
-
-  }
+  loginForm = new FormGroup({
+    login: new FormControl(''),
+    password: new FormControl('')
+  });
 
   constructor(private router: Router, private LoginService: LoginService) { }
 
-  ngOnInit() {
+  redirectTo(link: string) {
+    this.router.navigate(['/' + link]);
   }
 
+  logIn() {
+    debugger
+    this.LoginService.login(this.loginForm.value).subscribe((data) => {
+      this.userLoginInfo = data,
+        console.log('this.userLoginInfo ', this.userLoginInfo)
+    })
 
 
+  }
+
+  ngOnInit() {
+  }
 }
 

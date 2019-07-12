@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>delete</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
+<ion-content>
+    <ion-grid no-padding>
+  
+   
+  
+      <ion-row>
+  
+        <ion-col size="12" class="loginCol">
+          <ion-img class="loginImg" src="../../assets/img/logo2.png"></ion-img>
+  
+        </ion-col>
+  
+      </ion-row>
+    
+      <form [formGroup]="deleteForm"  (ngSubmit)="delete()" >
+      <ion-row text-center>
+  
+        <ion-col class="loginCol">
+          <ion-input formControlName="login" type="text" placeholder="Login" required></ion-input>
+          
+        </ion-col>
+   
+      </ion-row>
+      <ion-row text-center>
+  
+        <ion-col class="loginCol">
+          <ion-input formControlName="password" type="password" placeholder="Password" required></ion-input>
+        </ion-col>
+      
+      </ion-row>
+  
+      <ion-row >
+  
+        <ion-col size="5" text-right class="loginCol " color="light">
+            <ion-button  type="submit" fill="clear" class="loginButtons">
+                Delete
+            </ion-button>
+        </ion-col>
+  
+      
+        <ion-col text-left class="loginCols ">
+            <ion-button (click)="redirectTo('login')" fill="clear" class="loginButtons">
+                Back
+              </ion-button>
+        </ion-col>
+  
+      </ion-row >
+    </form>
+     
+  
+    </ion-grid>
+  
+  </ion-content>
