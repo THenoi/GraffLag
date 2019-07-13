@@ -38,7 +38,7 @@ export class RegisterPage implements OnInit {
 
   
   regIn() {
-    debugger
+
     this.RegisterService.register(this.registerForm.value).subscribe((data) => {
       this.userRegisterInfo = data,
         console.log('this.userLoginInfo ', this.userRegisterInfo)

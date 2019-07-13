@@ -1,4 +1,4 @@
-import {  HttpModule } from '@angular/http';
+import {  HttpModule, CookieXSRFStrategy } from '@angular/http';
 import { LoginService } from './services/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
+import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     StatusBar,
     SplashScreen,
     LoginService,
+    CookieService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

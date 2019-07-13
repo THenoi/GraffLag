@@ -1,27 +1,31 @@
 <ion-content>
 
-    <!-- <ion-grid no-padding>
-        <ion-row  text-center>
-             <ion-col class="homeFirstRow">
-                 <ion-img class="profilePhoto" src="../../assets/img/logo.png"></ion-img>
-             </ion-col> 
-        </ion-row>
-    </ion-grid> -->
-   
-    <ion-grid>
+    <ion-grid class="gridclass">
         <ion-row>
-            <ion-col class="profilephotocol" text-center size="12" color="dark">
-                  <ion-img class="profilePhoto" src="../../assets/img/logo.png"></ion-img>
+                <ion-col text-center><ion-text>
+                       <h1><i>{{user.login}}</i></h1>
+                </ion-text></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6"  color="dark">
+                  <ion-img  src="../../assets/img/logo.png"></ion-img>
+            </ion-col>
+            <ion-col text-center>
+                <ion-list>
+                    <ion-item class="ion-text-capitalize">userCountry</ion-item>
+                    <ion-item >{{userAge}}</ion-item>
+                    <ion-item >{{user.phone}}</ion-item>
+                    <ion-item class="ion-text-capitalize">{{user.status}}</ion-item>
+                </ion-list>
             </ion-col>
         </ion-row>
-        <ion-row style="margin-top:-13%;">
-            <ion-col text-center><h5><i><u> THEnoi </u></i></h5></ion-col>
-        </ion-row>
+
         <ion-row text-center>
             <ion-col >
-                <ion-textarea rows="5" class="profileTextarea"color="dark" placeholder="What you can to say today.."></ion-textarea>
+                <ion-textarea rows="5" class="profileTextarea" color="dark" placeholder="What you can to say today.."></ion-textarea>
             </ion-col>
         </ion-row>
+
         <ion-row text-right>
             <ion-col >
                 <ion-button fill="outline" color="dark" class="profilebtnpost">
@@ -29,6 +33,7 @@
                 </ion-button>
             </ion-col>
         </ion-row>
+
     </ion-grid>
 
 </ion-content>

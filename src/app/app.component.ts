@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -5,6 +6,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MenuController } from '@ionic/angular';
+import { CookieService } from 'ngx-cookie-service';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -12,21 +15,25 @@ import { MenuController } from '@ionic/angular';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-
-
-  redirectTo(link :any) {
-    this.router.navigate(['/'+link]);
-    this.menu.close('MainMenu');
-  }
+  
   constructor(
     private router: Router,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private menu: MenuController
+    private menu: MenuController,
+    private CookieService:CookieService,
+    private alertController:AlertController
   ) {
     this.initializeApp();
   }
+
+  redirectTo(link :any) {
+    this.CookieService.get('user') && link=="login"? alert("Sorry but you are Loged in System"):
+    this.router.navigate(['/'+link]);
+    this.menu.close('MainMenu');
+  }
+
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -47,4 +54,35 @@ export class AppComponent {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
-}
+  
+  async logout() {
+    let user = JSON.parse(this.CookieService.get('user'));
+    const alert = await this.alertController.create({
+      header: 'GraffLag - LogOut',
+      subHeader: "ಠ_ಠ",
+      translucent: true,
+      
+      message: '<br><strong><i>Hei '+user.login+' you really want to exit ?</i></strong>',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            console.log("user remains in system yeah");
+           this.openEnd();
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.CookieService.delete('user');
+            this.redirectTo('home');
+          }
+        }
+      ]
+    });
+    alert.present()
+  }
+  
+
+ }
+
