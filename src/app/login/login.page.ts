@@ -38,21 +38,20 @@ export class LoginPage implements OnInit {
   }
 
   logIn() {
-    debugger
+    
     let  userInfo : IUser;
     this.LoginService.login(this.loginForm.value).subscribe((data) => {
       this.userLoginInfo = data,
         userInfo = this.userLoginInfo[0];
-        this.userLoginInfo[0] !=null ? this.cookieService.set('user', JSON.stringify(userInfo)) :console.log('not found');
-        this.cookieService.get('user') ? this.redirectTo('home'): "";
+        this.userLoginInfo[0] ? this.cookieService.set('userdata', JSON.stringify(userInfo)) :"";
+        this.cookieService.get('userdata') ? this.redirectTo('home'): ""
     })
 
 
   }
 
   ngOnInit() {
-    this.cookieService.get('user')? this.redirectTo('home'):"";
-    
+    this.cookieService.get('userdata')? this.redirectTo('home'): ''; 
   }
 }
 

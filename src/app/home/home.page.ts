@@ -23,9 +23,11 @@ export interface IUser {
 })
 
 export class HomePage implements OnInit {
-  userAge:number;
-  user:any;
+  userstatus:boolean;
+  userAge:Date;
+
   title = "GraffLag - Home";
+  user:any;
   
   constructor(
     private router: Router,
@@ -38,18 +40,24 @@ export class HomePage implements OnInit {
 
   usercookie()
   {
-    
-    this.user = this.CookieService.get('user');
+    this.userstatus = true;
+    this.user = this.CookieService.get('userdata');
     this.user = JSON.parse(this.user);
-    let Data = new Date();
-    let curentdata:any = Data.getFullYear() + '-' + ('0' + (Data.getMonth() + 1)).slice(-2) + '-' + ('0' + Data.getDate()).slice(-2);
-    this.userAge = Data.getDate()-this.user.age;
-    console.log(curentdata - this.user.birthdate);
+
+
+      console.log(this.user);
+    
+    
+    // let Data = new Date();
+    // let curentdata:any = Data.getFullYear() + '-' + ('0' + (Data.getMonth() + 1)).slice(-2) + '-' + ('0' + Data.getDate()).slice(-2);
+    // this.user.birthdate;
+    // console.log(this.user.birthdate);
 
   }
 
   ngOnInit() {
-    this.CookieService.check('user') ? this.usercookie() : console.log("User not loged");
+    
+    this.CookieService.get('userdata') ? this.usercookie() : this.userstatus = false;
   }
 
 }

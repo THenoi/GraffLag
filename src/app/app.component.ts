@@ -56,7 +56,7 @@ export class AppComponent {
   }
   
   async logout() {
-    let user = JSON.parse(this.CookieService.get('user'));
+    let user = JSON.parse(this.CookieService.get('userdata'));
     const alert = await this.alertController.create({
       header: 'GraffLag - LogOut',
       subHeader: "ಠ_ಠ",
@@ -75,7 +75,8 @@ export class AppComponent {
           text: 'Yes',
           handler: () => {
             this.CookieService.delete('user');
-            this.redirectTo('home');
+            this.CookieService.deleteAll();
+            window.location.reload();
           }
         }
       ]

@@ -1,21 +1,46 @@
 <ion-content>
+ 
+    <ion-grid *ngIf="!userstatus"  class="gridclass">
+        <ion-row text-center>
+            <ion-col size="12">Welcome</ion-col>
+        </ion-row>
+        <ion-row text-center>
+            <ion-col size="12">On GraffLag</ion-col>
+        </ion-row>
+    </ion-grid>
 
-    <ion-grid class="gridclass">
+
+
+
+    <ion-grid *ngIf="userstatus" #homeProfile class="gridclass" >
         <ion-row>
-                <ion-col text-center><ion-text>
-                       <h1><i>{{user.login}}</i></h1>
-                </ion-text></ion-col>
+                <ion-col text-center>
+                    <ion-text class="ion-text-capitalize" >
+                       <h1 ><i>{{user.login}}</i></h1>
+                    </ion-text>
+                </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="6"  color="dark">
                   <ion-img  src="../../assets/img/logo.png"></ion-img>
             </ion-col>
             <ion-col text-center>
-                <ion-list>
-                    <ion-item class="ion-text-capitalize">userCountry</ion-item>
-                    <ion-item >{{userAge}}</ion-item>
-                    <ion-item >{{user.phone}}</ion-item>
-                    <ion-item class="ion-text-capitalize">{{user.status}}</ion-item>
+                <ion-list class="ion-align-self-center">
+                 
+                    <ion-item> 
+                        <ion-label *ngIf="userAge"#userAgeSet>{{userAge}}</ion-label>
+                        <ion-label *ngIf="!userAge" text-center #userAgeNoSet>No Age Set</ion-label>
+                    </ion-item>
+                    
+                    <ion-item> 
+                            <ion-label *ngIf="user.phone"#userAgeSet>{{user.phone}}</ion-label>
+                            <ion-label *ngIf="!user.phone" text-center #userAgeNoSet>Phone Empty</ion-label>
+                    </ion-item>
+
+                    <ion-item> 
+                            <ion-label *ngIf="user.status"#userAgeSet>{{user.status}}</ion-label>
+                            <ion-label *ngIf="!user.status" text-center #userAgeNoSet>Status Empty</ion-label>
+                    </ion-item>
                 </ion-list>
             </ion-col>
         </ion-row>
