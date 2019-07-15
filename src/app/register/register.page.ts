@@ -26,6 +26,7 @@ export class RegisterPage implements OnInit {
     reggender: new FormControl(''),
     regbirthdata: new FormControl(''),
     regphone: new FormControl(''),
+    regnickname: new FormControl(''),
   });
 
   constructor( private router: Router,private http: Http,private RegisterService:RegisterService) { }
@@ -41,7 +42,8 @@ export class RegisterPage implements OnInit {
 
     this.RegisterService.register(this.registerForm.value).subscribe((data) => {
       this.userRegisterInfo = data,
-        console.log('this.userLoginInfo ', this.userRegisterInfo)
+       !this.userRegisterInfo ? console.log('user exist try another login') : this.redirectTo('login');
+       
     })
   }
 

@@ -43,6 +43,7 @@ export class LoginPage implements OnInit {
     this.LoginService.login(this.loginForm.value).subscribe((data) => {
       this.userLoginInfo = data,
         userInfo = this.userLoginInfo[0];
+        
         this.userLoginInfo[0] ? this.cookieService.set('userdata', JSON.stringify(userInfo)) :"";
         this.cookieService.get('userdata') ? this.redirectTo('home'): ""
     })
