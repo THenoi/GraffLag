@@ -34,5 +34,11 @@ export class PostService {
 
     return this.http.post('/api/postgetall', { 'userid': (params.userid),'authore':params.authore }).pipe(map(data => <IPost>(data)))
   }
+  
+  news(): Observable<IPost> {
+
+    return this.http.post('/api/news',{}).pipe(map(data => <IPost>(data)))
+  }
+  
 }
 

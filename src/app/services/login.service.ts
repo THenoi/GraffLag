@@ -16,6 +16,6 @@ export class LoginService {
   login(params: any): Observable<IUser> {
 
     return this.http.post('/api/login', { 'login': (params.login), 'password': params.password }).pipe(map(data => <IUser>(data)))
-
+   
   }
 }
