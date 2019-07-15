@@ -1,6 +1,6 @@
 <ion-content>
- 
-    <ion-grid *ngIf="!userstatus"  class="gridclass">
+
+    <ion-grid *ngIf="!userstatus" class="gridclass">
         <ion-row text-center>
             <ion-col size="12">Welcome</ion-col>
         </ion-row>
@@ -12,51 +12,105 @@
 
 
 
-    <ion-grid *ngIf="userstatus" #homeProfile class="gridclass" >
+    <ion-grid *ngIf="userstatus" #homeProfile class="gridclass">
         <ion-row>
-                <ion-col text-center>
-                    <ion-text class="ion-text-capitalize" >
-                       <h1 ><i>{{user.login}}</i></h1>
-                    </ion-text>
-                </ion-col>
+            <ion-col text-center>
+                <ion-text *ngIf="this.user.nickname == null" class="ion-text-capitalize">
+                    <h1><i>{{user.login}}</i></h1>
+                </ion-text>
+                <ion-text *ngIf="this.user.nickname != null" class="ion-text-capitalize">
+                    <h1><i>{{user.nickname}}</i></h1>
+                </ion-text>
+            </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="6"  color="dark">
-                  <ion-img  src="../../assets/img/logo.png"></ion-img>
+            <ion-col size="6" color="dark">
+                <ion-img src="../../assets/img/logo.png"></ion-img>
             </ion-col>
             <ion-col text-center>
                 <ion-list class="ion-align-self-center">
-                 
-                    <ion-item> 
-                        <ion-label *ngIf="userAge"#userAgeSet>{{userAge}}</ion-label>
-                        <ion-label *ngIf="!userAge" text-center #userAgeNoSet>No Age Set</ion-label>
-                    </ion-item>
-                    
-                    <ion-item> 
-                            <ion-label *ngIf="user.phone"#userAgeSet>{{user.phone}}</ion-label>
-                            <ion-label *ngIf="!user.phone" text-center #userAgeNoSet>Phone Empty</ion-label>
+
+                    <ion-item>
+                        <ion-label *ngIf="this.user.birthdate != null" text-center #userAgeSet>
+                            <ion-icon class="ion-float-left" slot="start" name="flask"></ion-icon>
+                            {{this.user.birthdate}}
+                        </ion-label>
+                        <ion-label *ngIf="this.user.birthdate == null" text-center #userAgeNoSet>
+                            <ion-icon class="ion-float-left" slot="start" name="flask"></ion-icon>User Birth Data
+                        </ion-label>
                     </ion-item>
 
-                    <ion-item> 
-                            <ion-label *ngIf="user.status"#userAgeSet>{{user.status}}</ion-label>
-                            <ion-label *ngIf="!user.status" text-center #userAgeNoSet>Status Empty</ion-label>
+                    <ion-item>
+
+                        <ion-label *ngIf="this.user.phone != null" text-center #userAgeSet>
+                            <ion-icon class="ion-float-left" slot="start" name="call"></ion-icon>{{this.user.phone}}
+                        </ion-label>
+                        <ion-label *ngIf="this.user.phone == null" text-center #userAgeNoSet>
+                            <ion-icon class="ion-float-left" slot="start" name="call"></ion-icon>Phone Empty
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label *ngIf="this.user.status != null" text-center #userAgeSet>
+                            <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon>
+                            {{this.user.status}}
+                        </ion-label>
+                        <ion-label *ngIf="this.user.status == null" text-center #userAgeNoSet>
+                            <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon>Status Empty
+                        </ion-label>
                     </ion-item>
                 </ion-list>
             </ion-col>
         </ion-row>
 
+
         <ion-row text-center>
-            <ion-col >
-                <ion-textarea rows="5" class="profileTextarea" color="dark" placeholder="What you can to say today.."></ion-textarea>
+            <ion-col>
+                <ion-textarea rows="5" class="profileTextarea" color="dark" [(ngModel)]="post"
+                    placeholder="What you can to say today..">
+                </ion-textarea>
             </ion-col>
         </ion-row>
 
+        <!-- text area button -->
         <ion-row text-right>
-            <ion-col >
-                <ion-button fill="outline" color="dark" class="profilebtnpost">
+            <ion-col text-left>
+                <ion-button (click)="privacySetAlert()" fill="outline" color="dark" class="profilebtnpost">
+                    {{this.postPrivacy}}  <ion-icon class="ion-align-self-center" name="key" color="dark"></ion-icon>
+                </ion-button>
+
+
+            </ion-col>
+
+            <ion-col>
+                <ion-button (click)="sendPost()" fill="outline" color="dark" class="profilebtnpost">
                     Post  <ion-icon class="ion-align-self-center" name="cloud-done" color="dark"></ion-icon>
                 </ion-button>
             </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let item of this.posts" style="margin-top:15%;">
+            <ion-card color="light" style="width:100%;margin-top:-15%;">
+                <ion-card-header>
+                    <ion-card-title>{{item.authore}}</ion-card-title>
+                    <ion-card-subtitle>{{item.createdAt}}</ion-card-subtitle>
+
+                </ion-card-header>
+
+                <ion-card-content>
+                    {{item.text}}
+                </ion-card-content>
+                <ion-footer>
+                    <ion-button (click)="removePost(item.postid,item.userid,item.authore)" fill="clear">
+                        <ion-icon  name="trash" color="dark"></ion-icon>
+                    </ion-button>
+                    <ion-button fill="clear">
+                        <ion-icon  name="build" color="dark"></ion-icon>
+                    </ion-button>
+
+                </ion-footer>
+            </ion-card>
+
         </ion-row>
 
     </ion-grid>

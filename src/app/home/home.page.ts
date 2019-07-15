@@ -1,21 +1,32 @@
+import { PostService } from './../services/post.service';
+
+
+import { AlertController } from '@ionic/angular';
 import { IUser } from './home.page';
-import { User } from './../../../../GraffLag-BackEnd/GraffLag-BackEnd/server/models/model';
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; 
-import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 export interface IUser {
-  userid:number,
-  login:string,
-  password:string,
-  email:string,
-  gender:string,
-  birthdate:Date,
-  status:string,
-  phone:number
+  userid: number,
+  login: string,
+  password: string,
+  email: string,
+  gender: string,
+  birthdate: Date,
+  status: string,
+  phone: number
 }
-  
+export interface IPost {
+
+  userid: number,
+  text: string,
+  privacy: string,
+  likes: string,
+
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -23,41 +34,115 @@ export interface IUser {
 })
 
 export class HomePage implements OnInit {
-  userstatus:boolean;
-  userAge:Date;
-
+  userstatus: boolean;
+  userAge: Date;
+  postPrivacy: string = 'Public';
+  post: string = null;
+  posts: {};
   title = "GraffLag - Home";
-  user:any;
-  
+  user: any;
+
   constructor(
     private router: Router,
     private CookieService: CookieService,
-  ) {}
+    private alertController: AlertController,
+    private PostService: PostService,
+  ) { }
 
-  redirectTo(link :any) {
-    this.router.navigate(['/'+link]);
+  redirectTo(link: any) {
+    this.router.navigate(['/' + link]);
   }
 
-  usercookie()
+  usercookie() // get all user data from cookie
   {
-    this.userstatus = true;
+    this.userstatus = true; // set that user are logged
     this.user = this.CookieService.get('userdata');
     this.user = JSON.parse(this.user);
-
-
-      console.log(this.user);
-    
-    
-    // let Data = new Date();
-    // let curentdata:any = Data.getFullYear() + '-' + ('0' + (Data.getMonth() + 1)).slice(-2) + '-' + ('0' + Data.getDate()).slice(-2);
-    // this.user.birthdate;
-    // console.log(this.user.birthdate);
-
   }
 
+  sendPost() // user upload post
+  {
+    if (this.post != null) {
+      let postparams = {
+        userid: this.user.userid,
+        text: this.post,
+        privacy: this.postPrivacy,
+        authore: this.user.login,
+      }
+
+        
+      this.PostService.postupload(postparams).subscribe((data) => {
+       setTimeout( function(){window.location.reload()} ,1500);
+
+      })
+      
+    }
+    else {
+      console.log("post are empty, nothing to post.");
+    }
+  }
+  
+  getAllPosts()
+  {
+    let postparams = {
+      userid: this.user.userid,
+      text: this.post,
+      privacy: this.postPrivacy,
+      authore: this.user.login,
+    }
+    this.PostService.getallposts(postparams).subscribe((data) => {
+      this.posts = data;
+      console.log(this.posts);
+      
+    })
+  }
+
+  removePost(postid:number,userid:number,authore:string)
+  {
+   
+    console.log("post with "  +postid+ " wass removed");
+
+  }
   ngOnInit() {
-    
-    this.CookieService.get('userdata') ? this.usercookie() : this.userstatus = false;
+
+    if(this.CookieService.get('userdata')){ this.usercookie(),this.getAllPosts()} else { this.userstatus = false;}
+  }
+
+  async privacySetAlert() {
+
+    const alert = await this.alertController.create({
+      header: 'GraffLag - Post Privacy',
+      subHeader: "◉_◉",
+      translucent: true,
+      backdropDismiss: true,
+
+      message: '<br><strong><i>What type of privacy you want for post ?</i></strong>',
+      buttons: [
+        {
+          text: 'Public',
+
+          handler: () => {
+            this.postPrivacy = 'Public'
+          }
+        },
+        {
+          text: 'Private',
+
+          handler: () => {
+            this.postPrivacy = 'Private'
+          }
+        },
+        {
+          text: 'Friends',
+
+          handler: () => {
+            this.postPrivacy = 'Friends'
+          }
+        }
+
+      ]
+    });
+    alert.present()
   }
 
 }

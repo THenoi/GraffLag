@@ -12,6 +12,6 @@ export class RegisterService {
   register(params: any): Observable<any> {
     debugger;
     
-    return this.http.post('/api/reg', { 'login': params.reglogin, 'password': params.regpas, 'gender':params.reggender,'email': params.regemail, 'birthdata': params.regbirthdata, 'phone':params.regphone})
+    return this.http.post('/api/reg', { 'login': params.reglogin, 'password': params.regpas, 'gender':params.reggender,'email': params.regemail, 'birthdata': params.regbirthdata, 'phone':params.regphone,'nickname':params.regnickname})
   }
 }
