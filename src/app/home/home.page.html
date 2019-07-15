@@ -56,9 +56,15 @@
                             {{this.user.status}}
                         </ion-label>
                         <ion-label *ngIf="this.user.status == null" text-center #userAgeNoSet>
-                            <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon>Status Empty
+                            <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon> Status Empty
                         </ion-label>
                     </ion-item>
+
+                    <ion-label>
+                         <ion-button (click)="setStatus()" text-center fill="outline" color="dark">
+                             Set Status
+                         </ion-button>
+                    </ion-label>
                 </ion-list>
             </ion-col>
         </ion-row>

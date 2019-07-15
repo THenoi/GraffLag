@@ -49,6 +49,7 @@ export class HomePage implements OnInit {
     private PostService: PostService,
   ) { }
 
+
   redirectTo(link: any) {
     this.router.navigate(['/' + link]);
   }
@@ -104,6 +105,8 @@ export class HomePage implements OnInit {
       
     })}
 
+
+
   ngOnInit() {
 
     if (this.CookieService.get('userdata')) { this.usercookie(), this.getAllPosts() } else { this.userstatus = false; }
@@ -143,6 +146,42 @@ export class HomePage implements OnInit {
 
       ]
     });
+    alert.present()
+  }
+
+  async setStatus() {
+
+    const alert = await this.alertController.create({
+      header: 'GraffLag - Status',
+      subHeader: "◉_◉",
+      translucent: true,
+      backdropDismiss: true,
+
+      message: '<br><strong><i>Enter New Status</i></strong>',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log("status no set");
+          }
+        },
+        {
+          text: 'Set',
+
+          handler: () => {
+            console.log("status set");
+          }
+        }
+      ],
+      inputs: [
+        {
+          name: 'Review',
+          placeholder: 'good day for codding',
+        },
+      ],
+    });
+    
     alert.present()
   }
 
