@@ -1,31 +1,35 @@
-.loginInutL
-{
-    border:1px solid gray;
-    --background:#f5f5f5;
-    margin-left:13%;
-    margin-right: 13%;
-    width:76%;
-    border-radius: 5%;
+.loginRow{
+    margin-top:5.6rem;
 }
-.loginCol
-{
-    width:100%;
-}
+
 .loginImg{
-    width:60%;
-    margin:auto;
-    margin-top:25%;
-
+    width:45%;
+    margin: auto;
+    background-attachment: fixed;
 }
-.loginButtons
-{
-    color:black;
-    background-color: transparent;
-    font-size: 20px;
 
+.loginButtons1{
+    letter-spacing: 0.4px;
+    border-radius: 20px;
+    border:none;
 }
-.loginCols
-{
-    margin-left: 0px;
-    float: left;
+
+.title{
+    font-weight:bold;
+    letter-spacing: 0.6px;
+    text-align: center;
+}
+
+.forgotpass{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.Signup{
+    font-size: 15px;
+    color: red;
+    border:none;
+    background-color:white;
+    font-weight: bold;
+    letter-spacing: 0.2px;
 }

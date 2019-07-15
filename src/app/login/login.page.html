@@ -1,62 +1,55 @@
-<ion-content>
+<ion-content class="ContentBody">
   <ion-grid >
-    <ion-row>
+    <ion-row class="loginRow">
 
       <ion-col size="12" class="loginCol">
-        <ion-img class="loginImg" src="../../assets/img/logo2.png"></ion-img>
+        <ion-img  class="loginImg" src="../../assets/img/logo2.png"></ion-img>
+      <h2 class="title">Welcome!<br>Discover something new in our application</h2>
       </ion-col>
 
     </ion-row>
   
-    <form [formGroup]="loginForm"  (ngSubmit)="logIn()" >
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="login" type="text" placeholder="Login" required></ion-input>
-        
-      </ion-col>
- 
-    </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="password" type="password" placeholder="Password" required></ion-input>
-      </ion-col>
+    <form [formGroup]="loginForm"  (ngSubmit)="logIn()" margin>
     
+    <ion-row text-center>
+      <ion-col>
+        <ion-item text-center>
+          <ion-input type="text" placeholder="Login"></ion-input>
+        </ion-item>
+     </ion-col>
+    </ion-row>
+    
+    <ion-row text-center>
+      <ion-col>
+          <ion-item text-center>
+              <ion-input  type="password" placeholder="Password"></ion-input>
+           </ion-item>
+      </ion-col>
     </ion-row>
 
-    <ion-row >
+    <ion-row margin>
 
-      <ion-col size="5" text-right class="loginCol " color="light">
-          <ion-button  type="submit" fill="clear" class="loginButtons">
-               Login 
+      <ion-col text-right>
+          <ion-button  type="submit"  class="loginButtons" color="success" expand="block" class="loginButtons1">
+               Sign In 
           </ion-button>
       </ion-col>
+  </ion-row>
 
-    
-      <ion-col text-left class="loginCols ">
-          <ion-button (click)="redirectTo('forgotpassword')" fill="clear" class="loginButtons">
+    <ion-row>  
+      <ion-col text-left>
+          <ion-button (click)="redirectTo('forgotpassword')" fill="clear" class="forgotpass">
               Forgot Password
             </ion-button>
       </ion-col>
 
-    </ion-row >
-  </form>
-    <ion-row style="margin-top:-3%;" text-center>
-
-      <ion-col class="loginCol ">
-        <ion-button (click)="redirectTo('register')" fill="clear" class="loginButtons">
-          Register
+      <ion-col text-right>
+        <ion-button  (click)="redirectTo('register')" fill="clear" class="Signup">
+          Sign Up
         </ion-button>
       </ion-col>
-
-      <ion-col class="loginCol ">
-          <ion-button (click)="redirectTo('delete')" fill="clear" class="loginButtons">
-            Delete
-          </ion-button>
-        </ion-col>
-    </ion-row>
-
+    </ion-row >
+    </form>
   </ion-grid>
 
 </ion-content>
