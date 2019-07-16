@@ -1,31 +1,15 @@
+
 import { PostService } from './../services/post.service';
 
 
 import { AlertController } from '@ionic/angular';
-import { IUser } from './home.page';
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IUser } from '../interfaces/IUser';
+import { IPost } from '../interfaces/IPost';
 
 
-export interface IUser {
-  userid: number,
-  login: string,
-  password: string,
-  email: string,
-  gender: string,
-  birthdate: Date,
-  status: string,
-  phone: number
-}
-export interface IPost {
-
-  userid: number,
-  text: string,
-  privacy: string,
-  likes: string,
-
-}
 
 @Component({
   selector: 'app-home',
@@ -40,7 +24,7 @@ export class HomePage implements OnInit {
   post: string = null;
   posts: any;
   title = "GraffLag - Home";
-  user: any;
+  user:IUser;
 
   constructor(
     private router: Router,
@@ -54,26 +38,25 @@ export class HomePage implements OnInit {
     this.router.navigate(['/' + link]);
   }
 
-  usercookie() // get all user data from cookie
+  userCookie() // get all user data from cookie
   {
     this.userstatus = true; // set that user are logged
-    this.user = this.CookieService.get('userdata');
-    this.user = JSON.parse(this.user);
+    this.user = JSON.parse(this.CookieService.get('userdata'));
+    
+  
   }
 
   sendPost() // user upload post
   {
     if (this.post != null) {
-      let postparams = {
+      let curentPost = {
         userid: this.user.userid,
         text: this.post,
         privacy: this.postPrivacy,
-        authore: this.user.login,
       }
 
 
-      this.PostService.postupload(postparams).subscribe((data) => {
-        data
+      this.PostService.postUpload(curentPost).subscribe((data) => {
         this.posts.push(data);
       })
 
@@ -83,24 +66,21 @@ export class HomePage implements OnInit {
     }
   }
 
-  getAllPosts() {
-    let postparams = {
-      userid: this.user.userid,
-      text: this.post,
-      privacy: this.postPrivacy,
-      authore: this.user.login,
-    }
-    this.PostService.getallposts(postparams).subscribe((data) => {
+  userPosts() { //get all user posts
+    
+    this.PostService.userPosts(this.user.userid).subscribe((data) => {
       this.posts = data;
       console.log(this.posts);
 
     })
   }
 
-  removePost(postid: number, userid: number, authore: string) {
-    
-  
-    this.PostService.postd({ 'userid': (userid), 'postid': postid, 'authore': authore }).subscribe((data) => {
+  removePost(postid: number, userid: number) {
+    let curentPost = {
+      userid: userid,
+      postid: postid,
+    }
+    this.PostService.postDelete(curentPost).subscribe((data) => {
       data ? document.getElementById('post'+postid).remove():"";
       
     })}
@@ -109,7 +89,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
 
-    if (this.CookieService.get('userdata')) { this.usercookie(), this.getAllPosts() } else { this.userstatus = false; }
+    if (this.CookieService.get('userdata')) { this.userCookie() ,this.userPosts() } else { this.userstatus = false; }
   }
 
   async privacySetAlert() {

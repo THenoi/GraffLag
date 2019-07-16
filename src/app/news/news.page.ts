@@ -28,17 +28,16 @@ export class NewsPage implements OnInit {
       this.router.navigate(['/' + link]);
     }
   
-  getAllPosts() {
+  newsPosts() {
 
     this.PostService.news().subscribe((data) => {
       this.posts = data;
-      console.log(data);
       
     })
   }
 
   ngOnInit() {
-    this.getAllPosts();
+    this.newsPosts();
   }
 
 }

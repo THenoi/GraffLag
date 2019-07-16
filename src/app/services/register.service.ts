@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { IUser } from '../interfaces/IUser';
+import { map } from "rxjs/operators";
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +12,8 @@ export class RegisterService {
 
   constructor(private http:HttpClient) { }
 
-  register(params: any): Observable<any> {
-    debugger;
-    
-    return this.http.post('/api/reg', { 'login': params.reglogin, 'password': params.regpas, 'gender':params.reggender,'email': params.regemail, 'birthdata': params.regbirthdata, 'phone':params.regphone,'nickname':params.regnickname})
+  register(params: IUser): Observable<IUser> {
+
+    return this.http.post('/api/reg',  params).pipe(map(data => <IUser>(data)))
   }
 }

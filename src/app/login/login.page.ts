@@ -1,4 +1,4 @@
-import { IUser } from './../home/home.page';
+import { IUser } from './../interfaces/IUser';
 import { CookieService } from 'ngx-cookie-service';
 
 import { LoginService } from './../services/login.service';
@@ -24,10 +24,10 @@ export interface User {
 
 export class LoginPage implements OnInit {
 
-  userLoginInfo: {};
+  userLoginInfo: IUser;
 
   loginForm = new FormGroup({
-    login: new FormControl(''),
+    username: new FormControl(''),
     password: new FormControl('')
   });
 
@@ -42,10 +42,9 @@ export class LoginPage implements OnInit {
     let  userInfo : IUser;
     this.LoginService.login(this.loginForm.value).subscribe((data) => {
       this.userLoginInfo = data,
-        userInfo = this.userLoginInfo[0];
-        console.log(this.userLoginInfo);
+        userInfo = this.userLoginInfo;
         
-        this.userLoginInfo[0] ? this.cookieService.set('userdata', JSON.stringify(userInfo)) :"";
+        this.userLoginInfo ? this.cookieService.set('userdata', JSON.stringify(userInfo)) :"";
         this.cookieService.get('userdata') ? this.redirectTo('home'): ""
     })
 
