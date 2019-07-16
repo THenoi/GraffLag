@@ -7,88 +7,86 @@
       </ion-col>
 
     </ion-row>
-        <form [formGroup]="registerForm" (ngSubmit)="regIn()">
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="reglogin" type="text" placeholder="Login" required></ion-input>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row text-center>
-
-        <ion-col class="loginCol">
-          <ion-input formControlName="regnickname" type="text" placeholder="NickName" required></ion-input>
   
+ <form [formGroup]="registerForm" (ngSubmit)="regIn()">
+    
+  <ion-row text-center>
+     <ion-col>
+        <ion-item>
+            <ion-input formControlName="reglogin" type="text" placeholder="Login" required></ion-input>
+        </ion-item>
+      </ion-col>
+ </ion-row>
+
+ <ion-row text-center>
+      <ion-col>
+        <ion-item>
+          <ion-input formControlName="regnickname" type="text" placeholder="NickName" required></ion-input> 
+        </ion-item>
+      </ion-col>
+ </ion-row>
+
+  <ion-row text-center>
+      <ion-col>
+        <ion-item> 
+          <ion-input formControlName="regpas" type="password" placeholder="Password" required></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+
+  <ion-row text-center>
+      <ion-col>
+        <ion-item> 
+          <ion-input formControlName="regpasg" type="password" placeholder="Password Again" required></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+  
+  <ion-row text-center>
+      <ion-col>
+        <ion-item>
+          <ion-input formControlName="regemail" type="email" placeholder="Email" required></ion-input>
+        </ion-item>
+      </ion-col>
+  </ion-row>
+  
+  <ion-row text-center>
+    <ion-item>
+        <ion-col>
+          <ion-input formControlName="regphone" type="tel" placeholder="Phone" required></ion-input>
         </ion-col>
+      </ion-item>    
+  </ion-row>
   
-      </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="regpas" type="password" placeholder="Password" required>
-        </ion-input>
-
+  <ion-row text-center>
+    <ion-item> 
+        <ion-col>
+            <ion-input formControlName="reggender" type="text" placeholder="Male" required></ion-input>
+        </ion-col>
+    </ion-item>  
+  </ion-row>
+  
+  <ion-row text-center>
+    <ion-item>
+      <ion-col>
+        <ion-input formControlName="regbirthdata" type="date" placeholder="Birthdate" ></ion-input>  
       </ion-col>
+    </ion-item>
+   </ion-row>
 
-    </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="regpasg" type="password" placeholder="Password Again" required>
-        </ion-input>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="regemail" type="email" placeholder="Email" required></ion-input>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="regphone" type="tel" placeholder="Phone" required></ion-input>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="reggender" type="text" placeholder="Male" required></ion-input>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row text-center>
-
-      <ion-col class="loginCol">
-        <ion-input formControlName="regbirthdata" type="date" placeholder="Birthdate" required>
-        </ion-input>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row>
-
-      <ion-col text-right class="loginCol " color="light">
-        <ion-button type="submit" fill="clear" class="loginButtons">
-          Register
+   <ion-row margin>
+      <ion-col>
+        <ion-button type="submit"  color="primary" expand="block" class="back">
+           Register
         </ion-button>
       </ion-col>
-      <ion-col text-left class="loginCols ">
-        <ion-button (click)="redirectTo('login')" fill="clear" class="loginButtons">
-          Back
+ 
+      <ion-col>
+        <ion-button (click)="redirectTo('login')" color="danger" expand="block" class="back">
+           Back
         </ion-button>
       </ion-col>
-
-    </ion-row>
+  </ion-row>
 
   </form>
   </ion-grid>
