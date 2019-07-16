@@ -54,9 +54,8 @@ export class HomePage implements OnInit {
         userid: this.user.userid,
         text: this.post,
         privacy: this.postPrivacy,
+        authore:this.user.nickname
       }
-
-
       this.PostService.postUpload(curentPost).subscribe((data) => {
         this.posts.push(data);
       })

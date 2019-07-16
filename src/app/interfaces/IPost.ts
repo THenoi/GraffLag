@@ -6,6 +6,7 @@ export interface IPost {
     privacy?: string,
     likes?: string,
     createdAt?:Date,
-    updatedAt?:Date
+    updatedAt?:Date,
+    authore?:string,
 
   }
