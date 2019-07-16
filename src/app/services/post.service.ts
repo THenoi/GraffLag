@@ -1,9 +1,12 @@
+import { user } from './../../../../GraffLag-BackEnd/GraffLag-BackEnd/server/models/userModel';
+import { IUser } from './../interfaces/IUser';
+import { IPost } from './../interfaces/IPost';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from "rxjs/operators";
 import { Observable, observable } from 'rxjs';
-import { IPost } from '../home/home.page';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +14,29 @@ import { IPost } from '../home/home.page';
 export class PostService {
 
   constructor(private http: HttpClient) { }
-  //###########################
-  //postu = postupload
-  //postd = postdelete
-  //postup = postupdate
-  //###########################
 
-  postupload(params: any): Observable<IPost> {
 
-    return this.http.post('/api/postu', { 'userid': params.userid, 'text': params.text,'privacy':params.privacy,'authore':params.authore }).pipe(map(data => <IPost>(data)))
+  postUpload(params: IPost): Observable<IPost> {
+
+    return this.http.post('/api/postupload',  params ).pipe(map(data => <IPost>(data)))
   }
 
-  postd(params: any): Observable<IPost> { 
-    return this.http.post('/api/postd', { 'userid': (params.userid), 'postid': params.postid,'authore':params.authore }).pipe(map(data => <IPost>(data)))
+  postDelete(params: IPost): Observable<IPost> { 
+    return this.http.post('/api/postdelete',  params ).pipe(map(data => <IPost>(data)))
   }
 
   // postup(params: any): Observable<IPost> { 
   //   return this.http.post('/api/postup', { 'userid': (params.login), 'text': params.password, }).pipe(map(data => <IPost>(data)))
   // }
 
-  getallposts(params: any): Observable<IPost> {
-
-    return this.http.post('/api/postgetall', { 'userid': (params.userid),'authore':params.authore }).pipe(map(data => <IPost>(data)))
+  userPosts(userid: number): Observable<IPost> {
+    
+    return this.http.get('/api/user/'+userid+'/posts').pipe(map(data => <IPost>(data)))
   }
   
   news(): Observable<IPost> {
 
-    return this.http.post('/api/news',{}).pipe(map(data => <IPost>(data)))
+    return this.http.get('/api/news').pipe(map(data => <IPost>(data)))
   }
   
 }

@@ -62,7 +62,7 @@ export class AppComponent {
       subHeader: "ಠ_ಠ",
       translucent: true,
       
-      message: '<br><strong><i>Hei '+user.login+' you really want to exit ?</i></strong>',
+      message: '<br><strong><i>Hei '+user.nickname+' you really want to exit ?</i></strong>',
       buttons: [
         {
           text: 'No',

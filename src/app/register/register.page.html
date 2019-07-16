@@ -7,11 +7,11 @@
       </ion-col>
 
     </ion-row>
-        <form [formGroup]="registerForm" (ngSubmit)="regIn()">
+        <form [formGroup]="registerForm" ngNativeValidate  (ngSubmit)="registerUser()">
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="reglogin" type="text" placeholder="Login" required></ion-input>
+        <ion-input formControlName="username" type="text" placeholder="User Name" required></ion-input>
 
       </ion-col>
 
@@ -19,7 +19,7 @@
     <ion-row text-center>
 
         <ion-col class="loginCol">
-          <ion-input formControlName="regnickname" type="text" placeholder="NickName" required></ion-input>
+          <ion-input formControlName="nickname" type="text" placeholder="NickName" required minlength='3'></ion-input>
   
         </ion-col>
   
@@ -27,7 +27,7 @@
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="regpas" type="password" placeholder="Password" required>
+        <ion-input formControlName="password" type="password" placeholder="Password" required minlength='9'>
         </ion-input>
 
       </ion-col>
@@ -36,7 +36,7 @@
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="regpasg" type="password" placeholder="Password Again" required>
+        <ion-input formControlName="password2" type="password" placeholder="Password Again" required minlength='9'>
         </ion-input>
 
       </ion-col>
@@ -45,7 +45,7 @@
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="regemail" type="email" placeholder="Email" required></ion-input>
+        <ion-input formControlName="email" type="email" placeholder="Email" required></ion-input>
 
       </ion-col>
 
@@ -53,7 +53,7 @@
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="regphone" type="tel" placeholder="Phone" required></ion-input>
+        <ion-input formControlName="phone" type="number" placeholder="Phone" required minlength='5'></ion-input>
 
       </ion-col>
 
@@ -61,7 +61,7 @@
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="reggender" type="text" placeholder="Male" required></ion-input>
+        <ion-input formControlName="gender" type="text" placeholder="Male" required></ion-input>
 
       </ion-col>
 
@@ -69,7 +69,7 @@
     <ion-row text-center>
 
       <ion-col class="loginCol">
-        <ion-input formControlName="regbirthdata" type="date" placeholder="Birthdate" required>
+        <ion-input formControlName="birthdate" type="date" placeholder="Birthdate" min="1910-01-01" max="2015-12-31" required>
         </ion-input>
 
       </ion-col>
