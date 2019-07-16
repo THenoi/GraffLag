@@ -56,9 +56,15 @@
                             {{this.user.status}}
                         </ion-label>
                         <ion-label *ngIf="this.user.status == null" text-center #userAgeNoSet>
-                            <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon>Status Empty
+                            <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon> Status Empty
                         </ion-label>
                     </ion-item>
+
+                    <ion-label>
+                         <ion-button (click)="setStatus()" text-center fill="outline" color="dark">
+                             Set Status
+                         </ion-button>
+                    </ion-label>
                 </ion-list>
             </ion-col>
         </ion-row>
@@ -89,8 +95,8 @@
             </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let item of this.posts" style="margin-top:15%;">
-            <ion-card color="light" style="width:100%;margin-top:-15%;">
+        <ion-row *ngFor="let item of this.posts" >
+            <ion-card color="light" id="post{{item.postid}}" style="width:100%;margin-bottom: -5%; ">
                 <ion-card-header>
                     <ion-card-title>{{item.authore}}</ion-card-title>
                     <ion-card-subtitle>{{item.createdAt}}</ion-card-subtitle>
@@ -102,10 +108,10 @@
                 </ion-card-content>
                 <ion-footer>
                     <ion-button (click)="removePost(item.postid,item.userid,item.authore)" fill="clear">
-                        <ion-icon  name="trash" color="dark"></ion-icon>
+                        <ion-icon name="trash" color="dark" style="zoom:1.7;"></ion-icon>
                     </ion-button>
-                    <ion-button fill="clear">
-                        <ion-icon  name="build" color="dark"></ion-icon>
+                    <ion-button  fill="clear">
+                        <ion-icon name="build" color="dark" style="zoom:1.7;"></ion-icon>
                     </ion-button>
 
                 </ion-footer>

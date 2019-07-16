@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   userAge: Date;
   postPrivacy: string = 'Public';
   post: string = null;
-  posts: {};
+  posts: any;
   title = "GraffLag - Home";
   user: any;
 
@@ -48,6 +48,7 @@ export class HomePage implements OnInit {
     private alertController: AlertController,
     private PostService: PostService,
   ) { }
+
 
   redirectTo(link: any) {
     this.router.navigate(['/' + link]);
@@ -70,20 +71,19 @@ export class HomePage implements OnInit {
         authore: this.user.login,
       }
 
-        
-      this.PostService.postupload(postparams).subscribe((data) => {
-       setTimeout( function(){window.location.reload()} ,1500);
 
+      this.PostService.postupload(postparams).subscribe((data) => {
+        data
+        this.posts.push(data);
       })
-      
+
     }
     else {
       console.log("post are empty, nothing to post.");
     }
   }
-  
-  getAllPosts()
-  {
+
+  getAllPosts() {
     let postparams = {
       userid: this.user.userid,
       text: this.post,
@@ -93,19 +93,23 @@ export class HomePage implements OnInit {
     this.PostService.getallposts(postparams).subscribe((data) => {
       this.posts = data;
       console.log(this.posts);
-      
+
     })
   }
 
-  removePost(postid:number,userid:number,authore:string)
-  {
-   
-    console.log("post with "  +postid+ " wass removed");
+  removePost(postid: number, userid: number, authore: string) {
+    
+  
+    this.PostService.postd({ 'userid': (userid), 'postid': postid, 'authore': authore }).subscribe((data) => {
+      data ? document.getElementById('post'+postid).remove():"";
+      
+    })}
 
-  }
+
+
   ngOnInit() {
 
-    if(this.CookieService.get('userdata')){ this.usercookie(),this.getAllPosts()} else { this.userstatus = false;}
+    if (this.CookieService.get('userdata')) { this.usercookie(), this.getAllPosts() } else { this.userstatus = false; }
   }
 
   async privacySetAlert() {
@@ -142,6 +146,42 @@ export class HomePage implements OnInit {
 
       ]
     });
+    alert.present()
+  }
+
+  async setStatus() {
+
+    const alert = await this.alertController.create({
+      header: 'GraffLag - Status',
+      subHeader: "◉_◉",
+      translucent: true,
+      backdropDismiss: true,
+
+      message: '<br><strong><i>Enter New Status</i></strong>',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log("status no set");
+          }
+        },
+        {
+          text: 'Set',
+
+          handler: () => {
+            console.log("status set");
+          }
+        }
+      ],
+      inputs: [
+        {
+          name: 'Review',
+          placeholder: 'good day for codding',
+        },
+      ],
+    });
+    
     alert.present()
   }
 
