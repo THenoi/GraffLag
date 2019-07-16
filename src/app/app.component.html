@@ -1,13 +1,11 @@
 <ion-app>
-    <ion-header color="success">
-    <ion-toolbar color="secundary" class="NavBorder">
+    <ion-header>
+    <ion-toolbar class="NavBorder">
      
-    
-        <ion-grid>
-          <ion-row>
-
+      <ion-grid>
+          <ion-row class="rowContent">
             <ion-col align-self-stretch>
-             <ion-menu-button class="ion-float-left" menuId="MainMenu" style="margin-top:-2%;" > 
+             <ion-menu-button class="ion-float-left" menuId="MainMenu" style="margin-top:-3%;" > 
                <ion-button class=" ion-align-items-start"   color="light">
                   <ion-icon  name="menu"></ion-icon>
                </ion-button>
@@ -30,13 +28,13 @@
       </ion-header>
 
 
-      <ion-menu contentId="MainMenu" menuId="MainMenu" side="start" id="mainMenuId"class="mainMenu">
+      <ion-menu contentId="MainMenu" menuId="MainMenu" side="start" id="mainMenuId" >
           <ion-header>
             <ion-toolbar color="light">
               <ion-title class="mainMenuText">Main Menu</ion-title>
             </ion-toolbar>
           </ion-header>
-          <ion-content>
+          <ion-content class="ion-no-padding ion-no-margin">
             <ion-list>
                 <ion-item>
                   <ion-icon name="home" class="ion-align-items-start "></ion-icon>

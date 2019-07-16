@@ -6,6 +6,10 @@
 // and used throughout the application.
 
 .NavBorder{
-    color: gray;
     border-bottom: 4px solid black;
+
+}
+.hydrated {
+    overflow-y: hidden !important;
+    visibility: inherit;
 }

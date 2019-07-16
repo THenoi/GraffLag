@@ -3,7 +3,7 @@
 }
 
 .loginImg{
-    width:45%;
+    width:35%;
     margin: auto;
     background-attachment: fixed;
 }
@@ -32,4 +32,8 @@
     background-color:white;
     font-weight: bold;
     letter-spacing: 0.2px;
+}
+
+.no-scroll {
+    --overflow: hidden !important;
 }
