@@ -1,3 +1,6 @@
+import { IPost } from './../interfaces/IPost';
+import { IUser } from './../interfaces/IUser';
+import { log } from 'util';
 import { PostService } from './../services/post.service';
 
 
@@ -13,31 +16,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./news.page.scss'],
 })
 export class NewsPage implements OnInit {
- 
-  posts: any;
-  title = "GraffLag - News";
-  user: any;
 
-  constructor(  private router: Router,
+  posts: IPost;
+  title = "GraffLag - News";
+  user:IUser;
+
+  constructor(private router: Router,
     private CookieService: CookieService,
     private alertController: AlertController,
     private PostService: PostService,
-    ) { }
+  ) { }
 
-    redirectTo(link: any) {
-      this.router.navigate(['/' + link]);
-    }
-  
+  redirectTo(link: any) {
+    this.router.navigate(['/' + link]);
+  }
+
   newsPosts() {
 
     this.PostService.news().subscribe((data) => {
       this.posts = data;
-      
+
     })
   }
-
+  getUserId(){
+     this.user = JSON.parse(this.CookieService.get('userdata'));
+  }
+  postlike(postid: number,userid:number) {
+    let curentPost = {
+      userid: userid,
+      postid: postid,
+    }
+    this.PostService.like(curentPost).subscribe(data => console.log(data))
+  }
   ngOnInit() {
     this.newsPosts();
+    this.getUserId();
   }
 
 }

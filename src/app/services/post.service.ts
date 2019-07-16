@@ -38,6 +38,12 @@ export class PostService {
 
     return this.http.get('/api/news').pipe(map(data => <IPost>(data)))
   }
+
+  like(params:IPost)
+  {
+    console.log("hit like for post: " + params.postid + " / by user with userid:" + params.userid);
+    return this.http.put('/api/like',params).pipe(map(data => <IPost>(data)))
+  }
   
 }
 
