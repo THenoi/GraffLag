@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
 
   redirectTo(link: any) {
     this.router.navigate(['/' + link]);
+    
   }
 
   userCookie() // get all user data from cookie

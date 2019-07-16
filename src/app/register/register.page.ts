@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
 export class RegisterPage implements OnInit {
 
   userRegisterInfo: IUser;
-
+  status:string;
   registerForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -43,16 +43,25 @@ export class RegisterPage implements OnInit {
 
   registerUser() {
 
-    this.RegisterService.register(this.registerForm.value).subscribe((data) => {
-      this.userRegisterInfo = data,
-        this.userRegisterInfo ? this.regDataToCookie():console.log("this user exist try another username");
-        
-
+   if(this.registerForm.value.password == this.registerForm.value.password2)
+   {
+     this.RegisterService.register(this.registerForm.value).subscribe((data) => {
+           // [0] = data what we received from db after registration
+           // [1] = get true or false if user are registered or not
+      this.userRegisterInfo[0] = data, 
+         this.userRegisterInfo[1] ? this.regDataToCookie(): this.status = "This user alredy exist try another";
     })
   }
-  regDataToCookie () {
+  else
+  {
+    this.status = "Password Don't Match";
+  }
+}
+  
+
+  regDataToCookie () { //received data insert into cookie
     this.CookieService.set('userdata', JSON.stringify(this.userRegisterInfo));
-    this.redirectTo('home');
+    this.redirectTo('home')
   }
 
   ngOnInit() {
