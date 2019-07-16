@@ -31,8 +31,8 @@
         </ion-input>
 
       </ion-col>
+ </ion-row>
 
-    </ion-row>
     <ion-row text-center>
 
       <ion-col class="loginCol">
@@ -40,16 +40,17 @@
         </ion-input>
 
       </ion-col>
+ </ion-row>
 
-    </ion-row>
     <ion-row text-center>
 
       <ion-col class="loginCol">
         <ion-input formControlName="email" type="email" placeholder="Email" required></ion-input>
 
       </ion-col>
+  </ion-row>
 
-    </ion-row>
+
     <ion-row text-center>
 
       <ion-col class="loginCol">
@@ -73,22 +74,21 @@
         </ion-input>
 
       </ion-col>
+   </ion-row>
 
-    </ion-row>
-    <ion-row>
-
-      <ion-col text-right class="loginCol " color="light">
-        <ion-button type="submit" fill="clear" class="loginButtons">
-          Register
+   <ion-row margin>
+      <ion-col>
+        <ion-button type="submit"  color="primary" expand="block" class="back">
+           Register
         </ion-button>
       </ion-col>
-      <ion-col text-left class="loginCols ">
-        <ion-button (click)="redirectTo('login')" fill="clear" class="loginButtons">
-          Back
+ 
+      <ion-col>
+        <ion-button (click)="redirectTo('login')" color="danger" expand="block" class="back">
+           Back
         </ion-button>
       </ion-col>
-
-    </ion-row>
+  </ion-row>
 
   </form>
   </ion-grid>
