@@ -7,5 +7,6 @@ export interface IPost {
     likes?: string,
     createdAt?:Date,
     updatedAt?:Date
+    authore?:string,
 
   }

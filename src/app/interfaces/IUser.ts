@@ -6,7 +6,7 @@ export interface IUser {
     gender: string,
     birthdate: Date,
     phone: number
-    nickname:number
+    nickname:string
     status?: string,
 
     createdAt?:Date,

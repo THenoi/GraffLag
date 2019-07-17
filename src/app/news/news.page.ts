@@ -35,8 +35,11 @@ export class NewsPage implements OnInit {
 
     this.PostService.news().subscribe((data) => {
       this.posts = data;
+      console.log(data);
+      
 
     })
+    this.newsPostsRefreh()
   }
   getUserId(){
      this.user = JSON.parse(this.CookieService.get('userdata'));
@@ -47,6 +50,13 @@ export class NewsPage implements OnInit {
       postid: postid,
     }
     this.PostService.like(curentPost).subscribe(data => console.log(data))
+   
+  }
+  newsPostsRefreh()
+  {
+    const newspost = this.newsPosts()
+    setInterval(function(){newspost},10000);
+ 
   }
   ngOnInit() {
     this.newsPosts();
