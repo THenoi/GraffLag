@@ -1,41 +1,4 @@
-<!-- <ion-content >
-    <ion-row *ngFor="let item of posts" style="margin-top:17%;">
 
-        <ion-card color="light" id="post{{item.postid}}" style="width:100%;">
-            <ion-card-header>
-                <ion-row>
-                    <ion-col text-center size="3">
-                        <ion-img src="../../assets/img/logo2.png"></ion-img>
-                    </ion-col>
-                    <ion-col text-left size="9">
-                        <ion-card-title>{{item.authore}}</ion-card-title>
-                        <ion-card-subtitle>{{item.createdAt}}</ion-card-subtitle>
-                    </ion-col>
-                </ion-row>
-
-
-            </ion-card-header>
-
-            <ion-card-content>
-                {{item.text}}
-            </ion-card-content>
-
-            <ion-footer text-right>
-                <ion-row >
-                    <ion-col size="2" offset="7">
-                            <ion-icon (click)="postlike(item.postid,this.user.userid)"  name="heart"  style="zoom:2.0;" ></ion-icon>
-                            <span>{{item.likes}}</span>
-                    </ion-col>
-                    <ion-col size="2">
-                            <ion-icon name="undo" style="zoom:2.0;" ></ion-icon>
-                    </ion-col>
-                   
-                </ion-row>
-            </ion-footer>
-        </ion-card>
-
-    </ion-row>
-</ion-content> -->
 
 <ion-header class="newsHed">
     <ion-toolbar color="light">
@@ -44,9 +7,10 @@
 </ion-header>
 
 <ion-content class="card-background-page">
-
-    <ion-row *ngFor="let item of posts" style="margin-top:17%;">
-        <ion-card>
+       
+    <ion-row *ngFor="let item of posts" >
+        
+        <ion-card color="light" style="margin-bottom: -5%;">
             <ion-card-header>
                 <ion-row>
                     <ion-col text-center size="3">
@@ -60,12 +24,13 @@
             </ion-card-header>
             <ion-card-content>
                 {{item.text}}
+                
             </ion-card-content>
 
             <ion-footer text-right>
                     <ion-row >
-                        <ion-col size="2" offset="7">
-                                <ion-icon (click)="postlike(item.postid,this.user.userid)"  name="heart"  style="zoom:2.0;" ></ion-icon>
+                        <ion-col size="2" offset="5">
+                                <ion-icon   name="heart"  style="zoom:2.0;" ></ion-icon>
                                 <span>{{item.likes}}</span>
                         </ion-col>
                         <ion-col size="2">
@@ -73,7 +38,47 @@
                         </ion-col>
                        
                     </ion-row>
+
+                    <ion-row  text-center>
+                            <ion-col size="10" offset="1">
+                                    <ion-textarea style="border:1px solid black;" id='comment{{item.postid}}'  placeholder="Type new comment for this post"></ion-textarea>
+                            </ion-col>
+                            <ion-col text-right size="12">
+                                <ion-button (click)="addPostComments(item.postid,user.userid,user.nickname)">
+                                    Comment
+                                </ion-button>
+                            </ion-col>
+                    </ion-row>
+
+                    <ion-col text-left size="12">
+                            <ion-button (click)="getPostComments(item.postid)">
+                                Comments 
+                            </ion-button>
+                        </ion-col>
+                    <ion-row id="comments{{item.postid}}" text-center style="margin-bottom: 5%;"  >
+                   
+                            <ion-card *ngFor="let commentdata of item.comments"color="dark"style="margin-bottom: -5%;">
+                                    <ion-card-header>
+                                            <ion-row>
+                                                <ion-col text-center size="2">
+                                                    <ion-img src="../../assets/img/logo2.png"></ion-img>
+                                                </ion-col>
+                                                <ion-col text-left size="10">
+                                                    <ion-card-title start>{{commentdata.authore}}</ion-card-title>
+                                                    <ion-card-subtitle end>{{commentdata.createdAt}}</ion-card-subtitle>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-card-header>
+
+                                        <ion-card-content>
+                                                {{commentdata.comment}}
+                                        </ion-card-content>
+
+                            </ion-card>
+                    </ion-row>
+
                 </ion-footer>
+
         </ion-card>
 
     </ion-row>

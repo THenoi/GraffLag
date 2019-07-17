@@ -6,7 +6,18 @@ export interface IPost {
     privacy?: string,
     likes?: string,
     createdAt?:Date,
-    updatedAt?:Date
+    updatedAt?:Date,
     authore?:string,
+    comments?:IPostComment,
 
+  }
+
+  export interface IPostComment {
+    commentid?:number;
+    userid?: number,
+    postid?:number,
+    comment?: string,
+    createdAt?:Date,
+    updatedAt?:Date,
+    authore?:string,
   }

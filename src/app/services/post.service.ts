@@ -1,6 +1,6 @@
 import { user } from './../../../../GraffLag-BackEnd/GraffLag-BackEnd/server/models/userModel';
 import { IUser } from './../interfaces/IUser';
-import { IPost } from './../interfaces/IPost';
+import { IPost, IPostComment } from './../interfaces/IPost';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -39,10 +39,12 @@ export class PostService {
     return this.http.get('/api/news').pipe(map(data => <IPost>(data)))
   }
 
-  like(params:IPost)
-  {
-    console.log("hit like for post: " + params.postid + " / by user with userid:" + params.userid);
-    return this.http.put('/api/like',params).pipe(map(data => <IPost>(data)))
+  getPostComments(postid:number): Observable<IPost>{
+    return this.http.get('/api/news/'+postid+'/post').pipe(map(data => <IPost>(data)))
+  }
+  addPostComments(params: IPostComment): Observable<IPostComment> {
+
+    return this.http.post('/api/news/comment',  params ).pipe(map(data => <IPost>(data)))
   }
   
 }

@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
 
   redirectTo(link: any) {
     this.router.navigate(['/' + link]);
+    
   }
 
   userCookie() // get all user data from cookie
@@ -53,10 +54,8 @@ export class HomePage implements OnInit {
         userid: this.user.userid,
         text: this.post,
         privacy: this.postPrivacy,
-        authore:this.user.nickname,
+        authore:this.user.nickname
       }
-
-
       this.PostService.postUpload(curentPost).subscribe((data) => {
         this.posts.push(data);
       })

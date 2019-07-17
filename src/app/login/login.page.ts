@@ -25,6 +25,7 @@ export interface User {
 export class LoginPage implements OnInit {
 
   userLoginInfo: IUser;
+  status:string;
 
   loginForm = new FormGroup({
     username: new FormControl(''),
@@ -45,7 +46,7 @@ export class LoginPage implements OnInit {
         userInfo = this.userLoginInfo;
         
         this.userLoginInfo ? this.cookieService.set('userdata', JSON.stringify(userInfo)) :"";
-        this.cookieService.get('userdata') ? this.redirectTo('home'): ""
+        this.cookieService.get('userdata') ? this.redirectTo('home'): this.status = "Wrong Username or Password"
     })
 
 
