@@ -1,3 +1,4 @@
+import { SettingsService } from './../services/settings.service';
 import { IUser } from './../interfaces/IUser';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -15,16 +16,20 @@ import { Router } from '@angular/router';
 export class SettingsPage implements OnInit {
 
 
+  userSettings: IUser = {
+    username: null,
+    password: null,
+    email: null,
+    birthdate: null,
+    phone: null,
+    nickname: null,
+    status: null,
+
+  }
   userLoginInfo: IUser;
 
-  personalSettingsParams = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    email: new FormControl(''),
-    birthdate: new FormControl('')
-  });
 
-  constructor(private router: Router, private LoginService: LoginService,private cookieService: CookieService ) { }
+  constructor(private router: Router, private LoginService: LoginService, private cookieService: CookieService, private SettingsService: SettingsService) { }
 
   redirectTo(link: string) {
     this.router.navigate(['/' + link]);
@@ -34,38 +39,39 @@ export class SettingsPage implements OnInit {
     this.userLoginInfo = JSON.parse(this.cookieService.get('userdata'));
   }
 
-  personalSettingsClear()
-  {
+  publicSettingsApply() {
+
+    let currentData = {
+      userid: this.userLoginInfo.userid,
+      phone: this.userLoginInfo.phone,
+      nickname: this.userSettings.nickname,
+      status: this.userSettings.status,
+
+    }
+
+    console.log(currentData);
+
+    this.SettingsService.publicSettings(currentData).subscribe((data) => console.log(data));
 
   }
+  personalSettingsApply() {
+      let currentData = {
+      userid: this.userLoginInfo.userid,
+      phone: this.userLoginInfo.phone,
+      username: this.userSettings.username,
+      password: this.userSettings.password,
+      email: this.userSettings.email,
+      birthdate: this.userSettings.birthdate,
 
-  personalSettingsSave()
-  {
-    console.log('click save');
-    
-    if(this.personalSettingsParams.value.username != null)
-    {
-       this.personalSettingsParams.value.username != null? console.log( this.personalSettingsParams.value.username):console.log('username empty');
     }
-    else if(this.personalSettingsParams.value.password != null)
-    {
-      this.personalSettingsParams.value.password != null? console.log( this.personalSettingsParams.value.password):console.log('password empty');
-    }
-    else if( this.personalSettingsParams.value.email != null)
-    {
-      this.personalSettingsParams.value.email != null? console.log( this.personalSettingsParams.value.email):console.log('email empty');
-    }
-    else if(this.personalSettingsParams.value.settings != null)
-    {
-      this.personalSettingsParams.value.birthdate != null? console.log( this.personalSettingsParams.value.birthdate):console.log('birthdate empty');
-    }  
 
+    this.SettingsService.personalSettings(currentData).subscribe((data) => console.log(data));
   }
 
 
 
 
-  
+
   ngOnInit() {
     this.userCookie()
   }

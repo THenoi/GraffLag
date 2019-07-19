@@ -1,146 +1,155 @@
 <ion-content>
 
-<ion-list style="margin-top: 25%;">
-  <ion-list-header>{{userLoginInfo.nickname}} Setting</ion-list-header>
+  <ion-list style="margin-top: 25%;">
+    <ion-list-header>{{userLoginInfo.nickname}} Setting</ion-list-header>
 
-  <!-- Public Settings -->
-  <ion-list >
+    <!-- Public Settings -->
+    <ion-list>
       <ion-list-header>Public Settings</ion-list-header>
-    <ion-item-sliding>
+      <ion-item-sliding>
         <ion-item>
-        <ion-label position="stacked">Nickname</ion-label>
-        <ion-input  type="text" placeholder="{{userLoginInfo.nickname}}"></ion-input>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option >Save</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
+          <ion-label position="stacked">Nickname</ion-label>
+          <ion-input [(ngModel)]="userSettings.nickname"  type="text" placeholder="{{userLoginInfo.nickname}}"></ion-input>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="publicSettingsApply()">Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
   
-    <ion-item-sliding>
+      <ion-item-sliding>
         <ion-item>
-        <ion-label position="stacked">Status</ion-label>
-        <ion-input  type="text" placeholder="{{userLoginInfo.status}}"></ion-input>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option >Save</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+          <ion-label position="stacked">Status</ion-label>
+          <ion-input [(ngModel)]="userSettings.status" type="text" placeholder="{{userLoginInfo.status}}"></ion-input>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="publicSettingsApply()">Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
-   </ion-list>
+    </ion-list>
 
-   <!-- Privacy Settings -->
-   <ion-list>     
+    <!-- Privacy Settings -->
+    <ion-list>
       <!-- Privacy Settings -->
       <ion-list-header>Privacy Settings</ion-list-header>
 
 
       <ion-item-sliding>
-          <ion-item>
-              <ion-label>Profile Status</ion-label>
-              <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                <ion-select-option value="show">Public</ion-select-option>
-                <ion-select-option value="hide">Friends</ion-select-option>
-                <ion-select-option value="hide">Private</ion-select-option>
-              </ion-select>
+        <ion-item>
+          <ion-label>Profile Status</ion-label>
+          <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="show">Public</ion-select-option>
+            <ion-select-option value="hide">Friends</ion-select-option>
+            <ion-select-option value="hide">Private</ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item-options side="end">
-          <ion-item-option >Save</ion-item-option>
+          <ion-item-option>Save</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
 
       <ion-item-sliding>
-          <ion-item>
-              <ion-label>Photo Status</ion-label>
-              <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                <ion-select-option value="show">Public</ion-select-option>
-                <ion-select-option value="hide">Friends</ion-select-option>
-                <ion-select-option value="hide">Private</ion-select-option>
-              </ion-select>
+        <ion-item>
+          <ion-label>Photo Status</ion-label>
+          <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="show">Public</ion-select-option>
+            <ion-select-option value="hide">Friends</ion-select-option>
+            <ion-select-option value="hide">Private</ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item-options side="end">
-          <ion-item-option >Save</ion-item-option>
-        </ion-item-options>
-      </ion-item-sliding>
-      
-
-      <ion-item-sliding>
-          <ion-item>
-              <ion-label>Friends Status</ion-label>
-              <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                <ion-select-option value="show">Public</ion-select-option>
-                <ion-select-option value="hide">Friends</ion-select-option>
-                <ion-select-option value="hide">Private</ion-select-option>
-              </ion-select>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option >Save</ion-item-option>
+          <ion-item-option>Save</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
 
 
       <ion-item-sliding>
-          <ion-item>
-              <ion-label>Group Status</ion-label>
-              <ion-select value="brown" okText="Okay" cancelText="Dismiss">
-                <ion-select-option value="show">Public</ion-select-option>
-                <ion-select-option value="hide">Friends</ion-select-option>
-                <ion-select-option value="hide">Private</ion-select-option>
-              </ion-select>
+        <ion-item>
+          <ion-label>Friends Status</ion-label>
+          <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="show">Public</ion-select-option>
+            <ion-select-option value="hide">Friends</ion-select-option>
+            <ion-select-option value="hide">Private</ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item-options side="end">
-          <ion-item-option >Save</ion-item-option>
+          <ion-item-option>Save</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-   </ion-list>
+
+
+      <ion-item-sliding>
+        <ion-item>
+          <ion-label>Group Status</ion-label>
+          <ion-select value="brown" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="show">Public</ion-select-option>
+            <ion-select-option value="hide">Friends</ion-select-option>
+            <ion-select-option value="hide">Private</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option>Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
 
     <!-- Personal Settings -->
     <ion-list>
-      <form [formGroup]="personalSettingsParams" (ngSubmit)="personalSettingsSave()" >
-
-        <ion-item-sliding>
-            <ion-item>
-                <ion-list-header>Personal Settings</ion-list-header>
-              </ion-item>
-              <ion-item-options side="start">
-                  <ion-item-option (click)="personalSettingsClear()" color="danger">Clear</ion-item-option>
-                  
-                </ion-item-options>
-                <ion-item-options side="end">
-                 
-                    <ion-item-option color="success" for="profileSettings">Save</ion-item-option>
-                    
-                  </ion-item-options>
-      </ion-item-sliding>
-      
-      
 
 
-          <ion-item>
+
+      <ion-list-header>Personal Settings</ion-list-header>
+
+
+      <ion-item-sliding>
+        <ion-item>
           <ion-label position="stacked">UserName</ion-label>
-          <ion-input formControlName="username" type="text" placeholder="{{userLoginInfo.username}}"></ion-input>
+          <ion-input [(ngModel)]="userSettings.username" type="text" placeholder="{{userLoginInfo.username}}"></ion-input>
         </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="personalSettingsApply()">Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
-    
 
-          <ion-item>
+
+      <ion-item-sliding>
+        <ion-item>
           <ion-label position="stacked">Password</ion-label>
-          <ion-input formControlName="password" type="text" placeholder="{{userLoginInfo.password}}"></ion-input>
+          <ion-input [(ngModel)]="userSettings.password" (click)="personalSettingsApply()" type="text" placeholder="{{userLoginInfo.password}}"></ion-input>
         </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="personalSettingsApply()">Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
-          <ion-item>
+
+
+      <ion-item-sliding>
+        <ion-item>
           <ion-label position="stacked">Email</ion-label>
-          <ion-input formControlName="email" type="text" placeholder="{{userLoginInfo.email}}"></ion-input>
+          <ion-input [(ngModel)]="userSettings.email" (click)="personalSettingsApply()" type="text" placeholder="{{userLoginInfo.email}}"></ion-input>
         </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="personalSettingsApply()">Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
 
 
-          <ion-item>
+
+      <ion-item-sliding>
+        <ion-item>
           <ion-label position="stacked">Birthdate</ion-label>
-          <ion-input formControlName="birthdate" type="text" placeholder="{{userLoginInfo.birthdate}}"></ion-input>
+          <ion-input [(ngModel)]="userSettings.birthdate" (click)="personalSettingsApply()" type="text" placeholder="{{userLoginInfo.birthdate}}"></ion-input>
         </ion-item>
-        <ion-button name="profileSettings" type="submit" >2222</ion-button>
-      </form>
-     </ion-list>
-  
-</ion-list>
+        <ion-item-options side="end">
+          <ion-item-option color="success" (click)="personalSettingsApply()">Save</ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-list>
+
+
+
+  </ion-list>
 </ion-content>

@@ -1,27 +1,27 @@
+import { PostService } from './../services/post.service';
 import { IPost, IPostComment } from './../interfaces/IPost';
 import { IUser } from './../interfaces/IUser';
-
-import { PostService } from './../services/post.service';
-
-
 import { AlertController } from '@ionic/angular';
 
 import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.page.html',
   styleUrls: ['./news.page.scss'],
 })
+
+
 export class NewsPage implements OnInit {
 
   posts: IPost;
   title = "GraffLag - News";
-  user:IUser;
-  PostComment:IPostComment;
-  comment:string;
+  user: IUser;
+  PostComment: IPostComment;
+  comment: string;
 
   constructor(private router: Router,
     private CookieService: CookieService,
@@ -33,73 +33,79 @@ export class NewsPage implements OnInit {
     this.router.navigate(['/' + link]);
   }
 
-  newsPosts():any { //+
+  getUserData() { // +
+    this.user = JSON.parse(this.CookieService.get('userdata'));
+  }
+
+  newsPosts(): any { //+
 
     this.PostService.news().subscribe((data) => {
       this.posts = data;
     })
 
 
-  }
-  getUserId(){ // +
-     this.user = JSON.parse(this.CookieService.get('userdata'));
+
+
   }
 
-  
-  getPostComments(postid:number) // -
-  {   
-    console.log("request for comments");
-
-    this.PostService.getPostComments(postid).subscribe(data => 
-      {
+  getPostComments(postid: number, postInNewsId: number) // +
+  {
+    if (!this.posts[postInNewsId].commentshow) {
+      this.PostService.getPostComments(postid).subscribe(data => {
         this.PostComment = data;
-        this.posts.comments = this.PostComment;
-        console.log(this.posts.comments);
+        this.posts[postInNewsId].comments = this.PostComment;
+        this.posts[postInNewsId].commentshow = true;
 
-        (<HTMLInputElement>document.getElementById('comments'+postid)).append(showcomments);
-        
       });
-
-      // let showcomments = "<ion-card *ngFor='let commentdata of item.comment'color='dark'style='margin-bottom: -5%;'>"
-      // +"<ion-card-header>"
-      //       +"<ion-row>"
-      //             +"<ion-col text-center size='2'>"
-      //                 +"<ion-img src='../../assets/img/logo2.png'></ion-img>"
-      //            + "</ion-col>"
-      //             +"<ion-col text-left size='10'>"
-      //               +  "<ion-card-title start>{{"+this.user.authore+"}}</ion-card-title>"
-      //               +  "<ion-card-subtitle end>{{commentdata.createdAt}}</ion-card-subtitle>"
-      //            + "</ion-col>"
-      //       +  "</ion-row>"
-      //    + "</ion-card-header>"
-
-      //    + "<ion-card-content>"
-      //         +    "{{commentdata.comment}}"
-      //     +"</ion-card-content>"
-
-      // + "</ion-card>";
-
+    }
+    else {
+      this.posts[postInNewsId].comments = null;
+      this.posts[postInNewsId].commentshow = false;
+    }
   }
-  addPostComments(postid:number,userid:number,authore:string)   // +
+
+
+  addPostComments(postid: number, userid: number, authore: string, postInNewsId: number)   // +
   {
     let curentcomment = {
-      postid:postid,
-      userid:userid,
-      comment:(<HTMLInputElement>document.getElementById('comment'+postid)).value,
-      authore:authore,
+      postid: postid,
+      userid: userid,
+      comment: (<HTMLInputElement>document.getElementById('comment' + postid)).value,
+      authore: authore,
     }
-    this.PostService.addPostComments(curentcomment).subscribe(data => 
-      {
-        this.PostComment = data
-       console.log(this.PostComment);
-       
-       
-      });
-    
+
+    this.PostService.addPostComment(curentcomment).subscribe(data => {
+      this.PostComment = data
+      this.posts[postInNewsId].comments.push(this.PostComment);
+    });
   }
+
+  likePost(postid: number, userid: number) {
+    console.log(postid, userid);
+    let curentLike = {
+      postid: postid,
+      userid: userid,
+    }
+
+    this.PostService.postLike(curentLike).subscribe((data) => console.log(data));
+  }
+  deleteComent(commentid: number,postid: number, userid: number,postInNewsId:number,commentInPostId:number) {
+    let curentLike = {
+      commentid: commentid,
+      postid: postid,
+      userid: userid,
+    }
+    
+    this.PostService.deletePostComment(curentLike).subscribe((data) => 
+    {
+      data == 1 ? this.posts[postInNewsId].comments.splice(commentInPostId,1):'' ;
+    })
+  }
+  
+
   ngOnInit() {
     this.newsPosts();
-    this.getUserId();
+    this.getUserData();
   }
 
 }

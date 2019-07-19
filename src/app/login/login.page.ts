@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private LoginService: LoginService,private cookieService: CookieService ) { }
 
   redirectTo(link: string) {
-    this.router.navigate(['/' + link]);
+    this.router.navigate([link]);
   }
 
   logIn() {

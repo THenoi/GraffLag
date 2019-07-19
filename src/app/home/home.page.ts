@@ -47,10 +47,11 @@ export class HomePage implements OnInit {
   
   }
 
-  sendPost() // user upload post
+  createPost() // user upload post
   {
     if (this.post != null) {
       let curentPost = {
+
         userid: this.user.userid,
         text: this.post,
         privacy: this.postPrivacy,
@@ -126,42 +127,6 @@ export class HomePage implements OnInit {
 
       ]
     });
-    alert.present()
-  }
-
-  async setStatus() {
-
-    const alert = await this.alertController.create({
-      header: 'GraffLag - Status',
-      subHeader: "◉_◉",
-      translucent: true,
-      backdropDismiss: true,
-
-      message: '<br><strong><i>Enter New Status</i></strong>',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log("status no set");
-          }
-        },
-        {
-          text: 'Set',
-
-          handler: () => {
-            console.log("status set");
-          }
-        }
-      ],
-      inputs: [
-        {
-          name: 'Review',
-          placeholder: 'good day for codding',
-        },
-      ],
-    });
-    
     alert.present()
   }
 

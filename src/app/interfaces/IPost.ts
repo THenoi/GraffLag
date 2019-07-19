@@ -4,13 +4,16 @@ export interface IPost {
     userid?: number,
     text?: string,
     privacy?: string,
-    likes?: string,
+    likes?: IPostLike,
     createdAt?:Date,
     updatedAt?:Date,
     authore?:string,
     comments?:IPostComment,
-
+    commentshow?:boolean;
   }
+
+
+
 
   export interface IPostComment {
     commentid?:number;
@@ -21,3 +24,11 @@ export interface IPost {
     updatedAt?:Date,
     authore?:string,
   }
+
+  export interface IPostLike {
+    likeid?:number;
+    userid: number,
+    postid:number,
+  
+  }
+

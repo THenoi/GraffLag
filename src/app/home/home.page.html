@@ -59,12 +59,6 @@
                             <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon> Status Empty
                         </ion-label>
                     </ion-item>
-
-                    <ion-label>
-                         <ion-button (click)="setStatus()" text-center fill="outline" color="dark">
-                             Set Status
-                         </ion-button>
-                    </ion-label>
                 </ion-list>
             </ion-col>
         </ion-row>
@@ -89,7 +83,7 @@
             </ion-col>
 
             <ion-col>
-                <ion-button (click)="sendPost()" fill="outline" color="dark" class="profilebtnpost">
+                <ion-button (click)="createPost()" fill="outline" color="dark" class="profilebtnpost">
                     Post  <ion-icon class="ion-align-self-center" name="cloud-done" color="dark"></ion-icon>
                 </ion-button>
             </ion-col>
