@@ -1,0 +1,90 @@
+<ion-content>
+
+
+  <ion-grid class="gridclass">
+    <ion-row>
+      <ion-col text-center>
+        <ion-text *ngIf="this.profile.nickname == null" class="ion-text-capitalize">
+          <h1><i>{{profile.username}}</i></h1>
+        </ion-text>
+        <ion-text *ngIf="this.profile.nickname != null" class="ion-text-capitalize">
+          <h1><i>{{profile.nickname}}</i></h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" color="dark">
+        <ion-img src="../../assets/img/logo.png"></ion-img>
+      </ion-col>
+      <ion-col text-center>
+        <ion-list class="ion-align-self-center">
+
+          <ion-item>
+            <ion-label *ngIf="this.profile.birthdate != null" text-center #profileAgeSet>
+              <ion-icon class="ion-float-left" slot="start" name="flask"></ion-icon>
+              {{this.profile.birthdate}}
+            </ion-label>
+            <ion-label *ngIf="this.profile.birthdate == null" text-center #profileAgeNoSet>
+              <ion-icon class="ion-float-left" slot="start" name="flask"></ion-icon>profile Birth Data
+            </ion-label>
+          </ion-item>
+
+          <ion-item>
+
+            <ion-label *ngIf="this.profile.phone != null" text-center #profileAgeSet>
+              <ion-icon class="ion-float-left" slot="start" name="call"></ion-icon>{{this.profile.phone}}
+            </ion-label>
+            <ion-label *ngIf="this.profile.phone == null" text-center #profileAgeNoSet>
+              <ion-icon class="ion-float-left" slot="start" name="call"></ion-icon>Phone Empty
+            </ion-label>
+          </ion-item>
+
+          <ion-col>
+            <ion-label *ngIf="this.profile.status != null" text-center #profileAgeSet>
+              <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon>
+              {{this.profile.status}}
+            </ion-label>
+            <ion-label *ngIf="this.profile.status == null" text-center #profileAgeNoSet>
+              <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon> Status Empty
+            </ion-label>
+          </ion-col>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row text-center>
+      <ion-col>
+        <ion-icon (click)="friendRequest(profileid,user.userid)" name="person-add" style="zoom:2;"> </ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="people" style="zoom:2;"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="images" style="zoom:2;"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon name="sad" style="zoom:2;"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row *ngFor="let item of this.posts" style="margin-bottom: -7%">
+      <ion-card color="light" id="post{{item.postid}}" style="width:100%; ">
+        <ion-card-header>
+          <ion-card-title>{{profile.nickname}}</ion-card-title>
+          <ion-card-subtitle>{{item.createdAt}}</ion-card-subtitle>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          {{item.text}}
+        </ion-card-content>
+
+      </ion-card>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

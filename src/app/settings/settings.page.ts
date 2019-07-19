@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { SettingsService } from './../services/settings.service';
 import { IUser } from './../interfaces/IUser';
 import { CookieService } from 'ngx-cookie-service';
@@ -28,8 +29,7 @@ export class SettingsPage implements OnInit {
   }
   userLoginInfo: IUser;
 
-
-  constructor(private router: Router, private LoginService: LoginService, private cookieService: CookieService, private SettingsService: SettingsService) { }
+  constructor(private AlertController: AlertController, private router: Router, private LoginService: LoginService, private cookieService: CookieService, private SettingsService: SettingsService) { }
 
   redirectTo(link: string) {
     this.router.navigate(['/' + link]);
@@ -41,29 +41,60 @@ export class SettingsPage implements OnInit {
 
   publicSettingsApply() {
 
-    let currentData = {
-      userid: this.userLoginInfo.userid,
-      phone: this.userLoginInfo.phone,
-      nickname: this.userSettings.nickname,
-      status: this.userSettings.status,
-
-    }
+    var currentData: { [k: string]: any } = {};
+    currentData.userid = this.userLoginInfo.userid;
+    currentData.phone = this.userLoginInfo.phone;
+    currentData.nickname = this.userSettings.nickname != "" ? this.userSettings.nickname : null;
+    currentData.status = this.userSettings.status != "" ? this.userSettings.status : null
 
     console.log(currentData);
 
-    this.SettingsService.publicSettings(currentData).subscribe((data) => console.log(data));
+    this.SettingsService.publicSettings(currentData).subscribe((data) => { this.alertWhenDataHasBeenChanged() });
 
   }
-  personalSettingsApply() {
-      let currentData = {
-      userid: this.userLoginInfo.userid,
-      phone: this.userLoginInfo.phone,
-      username: this.userSettings.username,
-      password: this.userSettings.password,
-      email: this.userSettings.email,
-      birthdate: this.userSettings.birthdate,
+  async alertWhenDataHasBeenChanged() {
+    const alert = await this.AlertController.create({
+      header: 'GraffLag - Settings',
+      subHeader: "Attention",
+      translucent: true,
+      backdropDismiss: true,
 
-    }
+      message: '<br><strong><i>Hei your data successful has been changed, like your data will work right, we recommend to re login in system</i></strong>',
+      buttons: [
+        {
+          text: 'Remain on Page',
+
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Leave Now',
+
+          handler: () => {
+            this.cookieService.delete('userdata');
+            this.cookieService.deleteAll('userdata');
+            this.redirectTo('login');
+          }
+        },
+
+      ]
+    });
+    alert.present()
+
+  }
+
+  personalSettingsApply() {
+
+
+    var currentData: { [k: string]: any } = {};
+    currentData.userid = this.userLoginInfo.userid;
+    currentData.phone = this.userLoginInfo.phone;
+    currentData.username = this.userSettings.username != "" ? this.userSettings.username : null;
+    currentData.password = this.userSettings.password != "" ? this.userSettings.password : null
+    currentData.email = this.userSettings.email != "" ? this.userLoginInfo.email : null;
+    console.log(currentData);
+
 
     this.SettingsService.personalSettings(currentData).subscribe((data) => console.log(data));
   }

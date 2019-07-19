@@ -43,8 +43,6 @@ export class HomePage implements OnInit {
   {
     this.userstatus = true; // set that user are logged
     this.user = JSON.parse(this.CookieService.get('userdata'));
-    
-  
   }
 
   createPost() // user upload post

@@ -1,0 +1,35 @@
+<ion-header class="newsHed">
+  <ion-toolbar color="light">
+    <ion-title>Find</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+
+  <ion-item >
+    <ion-searchbar type="text" [(ngModel)]="SearchBarData" placeholder="Karen"></ion-searchbar>
+    {{SearchBarData}}
+  </ion-item>
+
+  <ion-row *ngFor="let item of profiles " style="margin-bottom:-10%;">
+    <ion-card class="card">
+      <ion-card-header>
+        <ion-row>
+          <ion-col text-left size="5">
+            <ion-img  (click)="redirectToProfile(item.userid)" width="25" src="../../assets/img/logo2.png"></ion-img>
+          </ion-col>
+          <ion-col size="7">
+              <ion-card-title (click)="redirectToProfile(item.userid)" >{{item.nickname}}</ion-card-title>
+              <ion-card-subtitle  *ngIf="item.birthdate != null">BirthDate: {{item.birthdate}}</ion-card-subtitle>
+              <ion-card-subtitle >Friends:*</ion-card-subtitle>
+              <ion-card-subtitle *ngIf="item.gender == 'M'">Gender: <ion-icon #male name="male"></ion-icon></ion-card-subtitle>
+              <ion-card-subtitle *ngIf="item.gender == 'F'">Gender: <ion-icon #male name="female"></ion-icon></ion-card-subtitle>
+            </ion-col>
+        </ion-row>
+
+
+      </ion-card-header>
+    </ion-card>
+  </ion-row>
+
+</ion-content>

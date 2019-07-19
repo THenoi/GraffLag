@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -11,12 +12,11 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'friends', loadChildren: './friends/friends.module#FriendsPageModule' },
   { path: 'gallery', loadChildren: './gallery/gallery.module#GalleryPageModule' },
-  { path: 'forgotpassword', loadChildren: './forgotpassword/forgotpassword.module#ForgotpasswordPageModule' },  { path: 'delete', loadChildren: './delete/delete.module#DeletePageModule' },
+  { path: 'forgotpassword', loadChildren: './forgotpassword/forgotpassword.module#ForgotpasswordPageModule' },
+  { path: 'delete', loadChildren: './delete/delete.module#DeletePageModule' },
   { path: 'update', loadChildren: './update/update.module#UpdatePageModule' },
-
-
-
-
+  { path: 'profile/:profileid', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'find', loadChildren: './find/find.module#FindPageModule' },
 
 
 ];

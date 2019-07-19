@@ -50,7 +50,7 @@
                         </ion-label>
                     </ion-item>
 
-                    <ion-item>
+                    <ion-col>
                         <ion-label *ngIf="this.user.status != null" text-center #userAgeSet>
                             <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon>
                             {{this.user.status}}
@@ -58,7 +58,7 @@
                         <ion-label *ngIf="this.user.status == null" text-center #userAgeNoSet>
                             <ion-icon class="ion-float-left" slot="start" name="happy"></ion-icon> Status Empty
                         </ion-label>
-                    </ion-item>
+                    </ion-col>
                 </ion-list>
             </ion-col>
         </ion-row>
@@ -84,7 +84,7 @@
 
             <ion-col>
                 <ion-button (click)="createPost()" fill="outline" color="dark" class="profilebtnpost">
-                    Post  <ion-icon class="ion-align-self-center" name="cloud-done" color="dark"></ion-icon>
+                    Post  <ion-icon class="ion-align-self-center" name="megaphone" color="dark"></ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>
