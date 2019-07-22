@@ -21,4 +21,9 @@ export class ProfileService {
     
     return this.http.get('/api/profile/'+profileid+'/posts').pipe(map(data => <IUser>(data)))
   }
+  ProfileFriendRequest(userid:number,profileid:number): Observable<boolean> {
+    
+    return this.http.post('/api/profile/friendrequest',{userid,profileid}).pipe(map(data => <boolean>(data)))
+  }
 }
+

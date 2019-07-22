@@ -1,5 +1,5 @@
 import { PostService } from './../services/post.service';
-import { IPost, IPostComment } from './../interfaces/IPost';
+import { IPost, IPostComment } from '../interfaces/IPost';
 import { IUser } from './../interfaces/IUser';
 import { AlertController } from '@ionic/angular';
 

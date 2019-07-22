@@ -1,3 +1,4 @@
+<ion-title>Settings</ion-title>
 <ion-content>
 
   <ion-list style="margin-top: 25%;">
@@ -140,7 +141,7 @@
       <ion-item-sliding>
         <ion-item>
           <ion-label position="stacked">Birthdate</ion-label>
-          <ion-input [(ngModel)]="userSettings.birthdate" (click)="personalSettingsApply()" type="text" placeholder="{{userLoginInfo.birthdate}}"></ion-input>
+          <ion-datetime [(ngModel)]="userSettings.birthdate" (click)="personalSettingsApply()" type="text" placeholder="{{userLoginInfo.birthdate}}"></ion-datetime>
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option color="success" (click)="personalSettingsApply()">Save</ion-item-option>

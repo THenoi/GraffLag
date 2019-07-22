@@ -1,6 +1,6 @@
 import { user } from './../../../../GraffLag-BackEnd/GraffLag-BackEnd/server/models/userModel';
 import { IUser } from './../interfaces/IUser';
-import { IPost, IPostComment, IPostLike } from './../interfaces/IPost';
+import { IPost, IPostComment, IPostLike } from '../interfaces/IPost';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

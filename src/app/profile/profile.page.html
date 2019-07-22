@@ -14,6 +14,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="6" color="dark">
+        
         <ion-img src="../../assets/img/logo.png"></ion-img>
       </ion-col>
       <ion-col text-center>
@@ -51,10 +52,16 @@
         </ion-list>
       </ion-col>
     </ion-row>
+  <ion-row text-center>
+    <ion-col size="12" style="color:red;">
+        {{message}}
+    </ion-col>
 
+  </ion-row>
     <ion-row text-center>
-      <ion-col>
-        <ion-icon (click)="friendRequest(profileid,user.userid)" name="person-add" style="zoom:2;"> </ion-icon>
+      
+      <ion-col *ngIf="FriendRequestStatus">
+        <ion-icon  (click)="friendRequest(profileid,user.userid)" name="person-add" style="zoom:2;"> </ion-icon>
       </ion-col>
       <ion-col>
         <ion-icon name="people" style="zoom:2;"></ion-icon>

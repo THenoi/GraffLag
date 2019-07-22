@@ -31,6 +31,8 @@
     "@ionic/angular": "^4.6.2",
     "@types/rx": "^4.1.1",
     "angular": "^1.7.8",
+    "angular-notifier": "^4.1.1",
+    "angular2-notifications": "^2.0.0",
     "body-parser": "^1.19.0",
     "core-js": "^3.1.4",
     "express": "^4.17.1",

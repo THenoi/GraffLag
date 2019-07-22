@@ -1,12 +1,45 @@
+<ion-title>Home</ion-title>
 <ion-content>
 
     <ion-grid *ngIf="!userstatus" class="gridclass">
-        <ion-row text-center>
-            <ion-col size="12">Welcome</ion-col>
+        <ion-row>
+                <ion-slides>
+                        <ion-slide >
+                            <ion-row>
+                                    <ion-col size="12">
+                                            <ion-img src="../../assets/img/slide1.png"></ion-img>
+                                    </ion-col>
+                                    <ion-col >
+                                            <p>Text1</p>
+                                    </ion-col>
+                            </ion-row>
+
+
+                        </ion-slide>
+                        <ion-slide>
+                                <ion-row>
+                                        <ion-col size="12">
+                                                <ion-img src="../../assets/img/slide2.png"></ion-img>
+                                        </ion-col>
+                                        <ion-col >
+                                                <p>Text2</p>
+                                        </ion-col>
+                                </ion-row>
+                        </ion-slide>
+                        <ion-slide>
+                                <ion-row>
+                                        <ion-col size="12">
+                                                <ion-img src="../../assets/img/slide3.png"></ion-img>
+                                        </ion-col>
+                                        <ion-col >
+                                                <p>Text3</p>
+                                        </ion-col>
+                                </ion-row>
+                        </ion-slide>
+            
+                    </ion-slides>
         </ion-row>
-        <ion-row text-center>
-            <ion-col size="12">On GraffLag</ion-col>
-        </ion-row>
+
     </ion-grid>
 
 
@@ -114,5 +147,8 @@
         </ion-row>
 
     </ion-grid>
+
+    <meta name="Description" content="Author: Nazar Ion,
+    WebSite: GraffLag">
 
 </ion-content>

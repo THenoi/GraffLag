@@ -2,7 +2,7 @@ import { ProfileService } from './../services/profile.service';
 
 import { PostService } from './../services/post.service';
 
-import { ActivatedRoute }     from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { AlertController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
@@ -20,8 +20,8 @@ export class ProfilePage implements OnInit {
 
   post: string = null;
   posts: IPost;
-  user:IUser;
-  profile:IUser = {
+  user: IUser;
+  profile: IUser = {
     userid: null,
     username: null,
     password: null,
@@ -29,17 +29,19 @@ export class ProfilePage implements OnInit {
     gender: null,
     birthdate: null,
     phone: null,
-    nickname:null,
+    nickname: null,
     status: null,
 
   }
-  profileid:number;
+  profileid: number;
+  FriendRequestStatus: boolean = true;
+  message:string;
 
-  constructor(    private router: Router,
+  constructor(private router: Router,
     private CookieService: CookieService,
     private alertController: AlertController,
     private ProfileService: ProfileService,
-    private route: ActivatedRoute,) { }
+    private route: ActivatedRoute, ) { }
 
   redirectTo(link: any) {
     this.router.navigate(['/' + link]);
@@ -49,23 +51,24 @@ export class ProfilePage implements OnInit {
   }
 
   getProfileData() { //get all user posts
-    
+
     this.ProfileService.getProfileDataServices(this.profileid).subscribe((data) => {
       this.profile = data;
 
 
     })
   }
-  friendRequest(profileid:number,userid:number)
-  {
-    
-     console.log(userid + "->" + profileid);
+  friendRequest(profileid: number, userid: number) {
+
+    this.ProfileService.ProfileFriendRequest(this.user.userid, this.profile.userid).subscribe((data) => {
+      data ? this.FriendRequestStatus = false:this.message = "Request already sent";
+    });
   }
   getProfilePosts() { //get all user posts
-    
+
     this.ProfileService.getProfilePostsServices(this.profileid).subscribe((data) => {
       this.posts = data;
-     console.log(this.posts);
+      console.log(this.posts);
 
     })
   }
@@ -78,7 +81,7 @@ export class ProfilePage implements OnInit {
     this.profileid = parseInt(this.route.snapshot.paramMap.get("profileid"));
     this.getUserData();
 
-    this.user.userid == this.profileid ? this.redirectTo('home'):'';
+    this.user.userid == this.profileid ? this.redirectTo('home') : '';
 
     this.getProfileData();
     this.getProfilePosts()

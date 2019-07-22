@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     SplashScreen,
     LoginService,
     CookieService,
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

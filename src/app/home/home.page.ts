@@ -33,6 +33,7 @@ export class HomePage implements OnInit {
     private PostService: PostService,
   ) { }
 
+   
 
   redirectTo(link: any) {
     this.router.navigate(['/' + link]);

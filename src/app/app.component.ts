@@ -8,14 +8,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MenuController } from '@ionic/angular';
 import { CookieService } from 'ngx-cookie-service';
 import { AlertController } from '@ionic/angular';
-
+import { IUser } from './interfaces/IUser';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  
+  user:IUser;
+
   constructor(
     private router: Router,
     private platform: Platform,
@@ -23,13 +25,14 @@ export class AppComponent {
     private statusBar: StatusBar,
     private menu: MenuController,
     private CookieService:CookieService,
-    private alertController:AlertController
+    private alertController:AlertController,
+    private titleService: Title
   ) {
     this.initializeApp();
   }
 
   redirectTo(link :any) {
-    this.CookieService.get('user') && link=="login"? alert("Sorry but you are Loged in System"):
+    this.CookieService.get('userdaata') && link=="login"? alert("Sorry but you are Loged in System"):
     this.router.navigate(['/'+link]);
     this.menu.close('MainMenu');
   }
@@ -74,8 +77,8 @@ export class AppComponent {
         }, {
           text: 'Yes',
           handler: () => {
-            this.CookieService.delete('user');
-            this.CookieService.deleteAll();
+            this.CookieService.delete('userdata');
+            this.CookieService.deleteAll('userdata');
             window.location.reload();
           }
         }
