@@ -30,7 +30,7 @@
     "@ionic-native/status-bar": "^5.10.0",
     "@ionic/angular": "^4.6.2",
     "@types/rx": "^4.1.1",
-    "angular": "^1.7.8",
+    "angular": "^1.7.9",
     "body-parser": "^1.19.0",
     "core-js": "^3.1.4",
     "express": "^4.17.1",
